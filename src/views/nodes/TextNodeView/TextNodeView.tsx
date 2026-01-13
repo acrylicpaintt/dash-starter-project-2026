@@ -2,6 +2,7 @@ import { observer } from "mobx-react";
 import * as React from 'react';
 import { StaticTextNodeStore } from "../../../stores";
 import { TopBar } from "../TopBar";
+import { ResizeHandle } from "../ResizeHandle";
 import "./../NodeView.scss";
 import "./TextNodeView.scss";
 
@@ -11,14 +12,19 @@ interface TextNodeProps {
 
 @observer
 export class TextNodeView extends React.Component<TextNodeProps> {
+    private nodeRef = React.createRef<HTMLDivElement>();
 
     render() {
         let store = this.props.store;
         return (
-            <div className="node textNode" style={{ transform: store.transform }} onWheel={(e: React.WheelEvent) => {
-                e.stopPropagation();
-                e.preventDefault();
-            }}>
+            <div
+                className="node textNode"
+                ref={this.nodeRef}
+                style={{ transform: store.transform }}
+                onWheel={(e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
+                }}>
                 <TopBar store={store}/>
                 <div className="scroll-box">
                     <div className="content">
@@ -26,6 +32,7 @@ export class TextNodeView extends React.Component<TextNodeProps> {
                         <p className="paragraph">{store.text}</p>
                     </div>
                 </div>
+                <ResizeHandle store={store} nodeRef={this.nodeRef}/>
             </div>
         );
     }
