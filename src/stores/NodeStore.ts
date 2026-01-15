@@ -1,4 +1,4 @@
-import { computed, observable } from "mobx";
+import { computed, observable, makeObservable } from "mobx";
 import { Utils } from "../Utils";
 
 export enum StoreType {
@@ -25,6 +25,10 @@ export class NodeStore {
 
     @observable
     public height: number = 0;
+
+    constructor() {
+        makeObservable(this);
+    }
 
     @computed
     public get transform(): string {
