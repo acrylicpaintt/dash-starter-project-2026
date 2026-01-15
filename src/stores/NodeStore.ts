@@ -3,7 +3,9 @@ import { Utils } from "../Utils";
 
 export enum StoreType {
     Text, 
-    Video
+    Image,
+    Video,
+    Website,
 }
 
 export class NodeStore {

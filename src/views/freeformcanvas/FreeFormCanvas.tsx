@@ -1,7 +1,7 @@
 import { observer } from "mobx-react";
 import * as React from 'react';
-import { NodeCollectionStore, StaticTextNodeStore, StoreType, VideoNodeStore } from "../../stores";
-import { TextNodeView, VideoNodeView } from "../nodes";
+import { NodeCollectionStore, StaticTextNodeStore, StoreType, VideoNodeStore,ImageNodeStore, WebsiteNodeStore } from "../../stores";
+import { TextNodeView, VideoNodeView, ImageNodeView, WebsiteNodeView } from "../nodes";
 import "./FreeFormCanvas.scss";
 
 interface FreeFormProps {
@@ -54,6 +54,12 @@ export class FreeFormCanvas extends React.Component<FreeFormProps> {
 
                                 case StoreType.Video:
                                     return (<VideoNodeView key={nodeStore.Id} store={nodeStore as VideoNodeStore}/>)
+
+                                case StoreType.Image:
+                                    return (<ImageNodeView key={nodeStore.Id} store={nodeStore as ImageNodeStore}/>)
+
+                                case StoreType.Website:
+                                    return (<WebsiteNodeView key={nodeStore.Id} store={nodeStore as WebsiteNodeStore}/>)
 
                                 default:
                                     return (null);

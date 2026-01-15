@@ -1,9 +1,9 @@
 import { observable } from "mobx";
 import { NodeStore } from "./NodeStore";
 
-export class ImageNodeStore extends NodeStore {
+export class WebsiteNodeStore extends NodeStore {
 
-    constructor(initializer: Partial<ImageNodeStore>) {
+    constructor(initializer: Partial<WebsiteNodeStore>) {
         super();
         Object.assign(this, initializer);
     }
@@ -13,8 +13,5 @@ export class ImageNodeStore extends NodeStore {
 
     @observable
     public url: string | undefined;
-
-    @observable
-    public alt: string | undefined;
 
 }

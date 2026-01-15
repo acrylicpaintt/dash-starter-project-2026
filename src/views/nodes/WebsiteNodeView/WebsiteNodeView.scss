@@ -1,0 +1,12 @@
+.node {
+
+    &.websiteNode {
+        background: rgb(179, 246, 186);
+    }
+
+    iframe {
+        width: 100%;
+
+        //reminder: find a way to make the height match resizing if possible, perhaps a script or setting?
+    }
+}
