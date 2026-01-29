@@ -1,0 +1,19 @@
+.AddNodeButton {
+    background-color: rgb(155, 198, 212);
+    width: 300;
+    height: 200; //width and height dont change idk why, look into it pls
+    border-radius: 30%; // CHANGE THIS TO LOOK BETTER
+    //get rid of the black border line soon btw
+    //make text size and font bigger/better
+    color: white;
+    font-family: 'Hind Siliguri', sans-serif;
+    box-shadow: 0 0 10px grey;
+    margin-left: 10px;
+    margin-top: 10px;
+
+    &:hover {
+        background-color: rgb(108, 159, 176);
+    }
+}
+
+//maybe add a menu bar for stuff

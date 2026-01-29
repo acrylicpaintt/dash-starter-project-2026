@@ -2,6 +2,7 @@ import React from 'react';
 import './App.scss';
 import { NodeCollectionStore, NodeStore, TextNodeStore, StoreType, VideoNodeStore, WebsiteNodeStore, ImageNodeStore } from './stores';
 import { FreeFormCanvas } from './views/freeformcanvas/FreeFormCanvas';
+import AddNodeButton from './AddNodeButton';
 
 
 const mainNodeCollection = new NodeCollectionStore();
@@ -45,8 +46,9 @@ export class App extends React.Component {
         return (
             <div className="App">
               <FreeFormCanvas store={mainNodeCollection} /> 
-              
+              <AddNodeButton />
             </div>
+            
         );
     }
 }
