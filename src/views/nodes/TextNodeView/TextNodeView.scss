@@ -4,4 +4,12 @@
     }
 }
 
+//sets the default size for the title to be larger (it fits better in my opinion)
+.title .ql-editor {
+  font-size: 24px;
+  font-weight: 600;
+}
 
+.text .ql-editor {
+  font-size: 16px;
+}

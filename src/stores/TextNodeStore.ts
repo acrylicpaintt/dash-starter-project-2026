@@ -1,9 +1,9 @@
 import { observable, makeObservable } from "mobx";
 import { NodeStore } from "./NodeStore";
 
-export class StaticTextNodeStore extends NodeStore {
+export class TextNodeStore extends NodeStore {
 
-    constructor(initializer: Partial<StaticTextNodeStore>) {
+    constructor(initializer: Partial<TextNodeStore>) {
         super();
         makeObservable(this);
         Object.assign(this, initializer);
