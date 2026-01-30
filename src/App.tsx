@@ -2,11 +2,14 @@ import React from 'react';
 import './App.scss';
 import { NodeCollectionStore, NodeStore, TextNodeStore, StoreType, VideoNodeStore, WebsiteNodeStore, ImageNodeStore } from './stores';
 import { FreeFormCanvas } from './views/freeformcanvas/FreeFormCanvas';
-import AddNodeButton from './AddNodeButton';
+import  AddImageNode from './AddImageNode';
+import  AddTextNode from './AddTextNode';
+import  AddWebsiteNode from './AddWebsiteNode';
+import  AddVideoNode from './AddVideoNode';
 
 
 const mainNodeCollection = new NodeCollectionStore();
-
+/*
 // create a bunch of text and video nodes (you probably want to delete this at some point)
 let numNodes: number = 300;
 let maxX: number = 10000;
@@ -33,7 +36,7 @@ for (let i = 0; i < numNodes / 4; i++) {
 
 // add set of 300 nodes to node collection
 mainNodeCollection.addNodes(nodes);
-
+*/
 //test to see how to add nodes to collections
 //const testNode = new NodeCollectionStore;
 //let nodesTest: NodeStore[] = [];
@@ -50,7 +53,10 @@ export class App extends React.Component {
         return (
             <div className="App">
               <FreeFormCanvas store={mainNodeCollection} /> 
-              <AddNodeButton nodeCollection={mainNodeCollection} />
+              <AddTextNode nodeCollection={mainNodeCollection} />
+              <AddImageNode nodeCollection={mainNodeCollection} />
+              <AddVideoNode nodeCollection={mainNodeCollection} />
+              <AddWebsiteNode nodeCollection={mainNodeCollection} />
               
             </div>
             
