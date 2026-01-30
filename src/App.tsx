@@ -50,7 +50,8 @@ export class App extends React.Component {
         return (
             <div className="App">
               <FreeFormCanvas store={mainNodeCollection} /> 
-              <AddNodeButton />
+              <AddNodeButton nodeCollection={mainNodeCollection} />
+              
             </div>
             
         );
