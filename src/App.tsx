@@ -2,10 +2,7 @@ import React from 'react';
 import './App.scss';
 import { NodeCollectionStore, NodeStore, TextNodeStore, StoreType, VideoNodeStore, WebsiteNodeStore, ImageNodeStore } from './stores';
 import { FreeFormCanvas } from './views/freeformcanvas/FreeFormCanvas';
-import  AddImageNode from './AddImageNode';
-import  AddTextNode from './AddTextNode';
-import  AddWebsiteNode from './AddWebsiteNode';
-import  AddVideoNode from './AddVideoNode';
+import { MenuBar } from './MenuBar';
 
 
 const mainNodeCollection = new NodeCollectionStore();
@@ -53,10 +50,7 @@ export class App extends React.Component {
         return (
             <div className="App">
               <FreeFormCanvas store={mainNodeCollection} /> 
-              <AddTextNode nodeCollection={mainNodeCollection} />
-              <AddImageNode nodeCollection={mainNodeCollection} />
-              <AddVideoNode nodeCollection={mainNodeCollection} />
-              <AddWebsiteNode nodeCollection={mainNodeCollection} />
+              <MenuBar nodeCollection={mainNodeCollection} />
               
             </div>
             

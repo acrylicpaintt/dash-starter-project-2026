@@ -10,8 +10,8 @@ export class AddTextNode extends React.Component<AddTextNodeProps> {
     createNewNode = () => {
         const newNode = new TextNodeStore({ 
             type: StoreType.Text, 
-            x: Math.random() * 10000, 
-            y: Math.random() * 10000, //change this if possible - maybe to where mouse is or in the center of the visible canvas
+            x: window.innerWidth / 2 - this.props.nodeCollection.x - 700, 
+            y: window.innerWidth / 2 - this.props.nodeCollection.y - 600 ,
             title: "New Node", 
             text: "This is a newly created node!" 
         });
@@ -22,7 +22,7 @@ export class AddTextNode extends React.Component<AddTextNodeProps> {
 
     render() {
         return ( 
-            <button className="AddNodeButton" onClick={this.createNewNode}>Add New Text Node</button>  
+            <button className="AddNodeButton" onClick={this.createNewNode}>New Text Node</button>  
             // maybe have it so there is add new node of each type, would be better   
         );
     }

@@ -39,6 +39,7 @@ export class FreeFormCanvas extends React.Component<FreeFormProps> {
         this.props.store.x += e.movementX;
         this.props.store.y += e.movementY;
     }
+    
 
     render() {
         let store = this.props.store;

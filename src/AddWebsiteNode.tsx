@@ -9,11 +9,11 @@ interface AddWebsiteNodeProps {
 export class AddWebsiteNode extends React.Component<AddWebsiteNodeProps> {
     createNewNode = () => {
         const newNode = new WebsiteNodeStore({ 
-            type: StoreType.Video, 
-            x: Math.random() * 10000, 
-            y: Math.random() * 10000, //change this if possible - maybe to where mouse is or in the center of the visible canvas
+            type: StoreType.Website, 
+            x: window.innerWidth / 2 - this.props.nodeCollection.x - 700, 
+            y: window.innerWidth / 2 - this.props.nodeCollection.y - 600 ,
             title: "New Website Node", 
-            url:  "http://google.com" 
+            url:  "https://brown-dash.github.io/Dash-Documentation/about/" 
             
         });
         
@@ -23,7 +23,7 @@ export class AddWebsiteNode extends React.Component<AddWebsiteNodeProps> {
 
     render() {
         return ( 
-            <button className="AddNodeButton" onClick={this.createNewNode}>Add New Website Node</button>  
+            <button className="AddNodeButton" onClick={this.createNewNode}>New Website Node</button>  
             // maybe have it so there is add new node of each type, would be better   
         );
     }

@@ -10,9 +10,9 @@ export class AddVideoNode extends React.Component<AddVideoNodeProps> {
     createNewNode = () => {
         const newNode = new VideoNodeStore({ 
             type: StoreType.Video, 
-            x: Math.random() * 10000, 
-            y: Math.random() * 10000, //change this if possible - maybe to where mouse is or in the center of the visible canvas
-            title: "New Website Node", 
+            x: window.innerWidth / 2 - this.props.nodeCollection.x - 700, 
+            y: window.innerWidth / 2 - this.props.nodeCollection.y - 600,
+            title: "New Video Node", 
             url:  "http://cs.brown.edu/people/peichman/downloads/cted.mp4" 
             
         });
@@ -23,7 +23,7 @@ export class AddVideoNode extends React.Component<AddVideoNodeProps> {
 
     render() {
         return ( 
-            <button className="AddNodeButton" onClick={this.createNewNode}>Add New Video Node</button>  
+            <button className="AddNodeButton" onClick={this.createNewNode}>New Video Node</button>  
             // maybe have it so there is add new node of each type, would be better   
         );
     }

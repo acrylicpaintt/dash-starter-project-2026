@@ -1,10 +1,15 @@
-import { override, observable, action } from "mobx";
+import { makeObservable, override, observable, action } from "mobx";
 import { NodeStore } from "./NodeStore";
 
 export class NodeCollectionStore extends NodeStore {
 
     @observable
     public nodes: NodeStore[] = new Array<NodeStore>();
+
+    constructor() {
+        super();
+        makeObservable(this);
+    }
 
     @override
     public get transform(): string {

@@ -1,8 +1,8 @@
 .AddNodeButton {
     padding: 10px;
     position: relative;
-    background-color: rgb(155, 198, 212);
-    width: 200px;
+    background-color: rgb(155, 125, 183);
+    width: 150px;
     height: 60px; 
     z-index: 1000; //otherwise shows up behind the nodes and is unable to be interacted with - FIND ANOTHER OWRK AROUND 
     border-radius: 30px; //rounded button
@@ -16,11 +16,11 @@
     cursor: pointer;
 
     &:hover {
-        background-color: rgb(108, 159, 176);
+        background-color: rgb(126, 96, 155);
     }
 
     &:active {
-        background-color: rgb(80, 130, 150);
+        background-color: rgb(88, 53, 121);
         transform: scale(0.98); 
     }
 }
