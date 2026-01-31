@@ -1,9 +1,10 @@
 import React from 'react';
 import './App.scss';
-import { NodeCollectionStore, NodeStore, TextNodeStore, StoreType, VideoNodeStore, WebsiteNodeStore, ImageNodeStore } from './stores';
+import { NodeCollectionStore, NodeStore, TextNodeStore, StoreType, VideoNodeStore, WebsiteNodeStore, ImageNodeStore, CollectionNodeStore } from './stores';
 import { FreeFormCanvas } from './views/freeformcanvas/FreeFormCanvas';
 import { MenuBar } from './MenuBar';
 
+//let numNodes: number = 300;
 
 const mainNodeCollection = new NodeCollectionStore();
 /*
@@ -11,8 +12,8 @@ const mainNodeCollection = new NodeCollectionStore();
 let numNodes: number = 300;
 let maxX: number = 10000;
 let maxY: number = 10000;
-let nodes: NodeStore[] = [];
-
+*///let nodes: NodeStore[] = [];
+/*
 // add 150 static text nodes to random locations
 for (let i = 0; i < numNodes / 4; i++) {
     nodes.push(new TextNodeStore({ type: StoreType.Text, x: Math.random() * maxX, y: Math.random() * maxY, title: "Text Node Title", text: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?" }));
@@ -32,16 +33,17 @@ for (let i = 0; i < numNodes / 4; i++) {
 }
 
 // add set of 300 nodes to node collection
-mainNodeCollection.addNodes(nodes);
 */
 //test to see how to add nodes to collections
-//const testNode = new NodeCollectionStore;
-//let nodesTest: NodeStore[] = [];
-//nodesTest.push(new TextNodeStore({ type: StoreType.Text, x: 0, y: 0, title: "Teste", text: "TEST"}))
-//testNode.addNodes(nodesTest);
+/*const testNode = new NodeCollectionStore;
+let nodesTest: NodeStore[] = [];
+nodesTest.push(new TextNodeStore({ type: StoreType.Text, x: 0, y: 0, title: "Teste", text: "TEST"}))
+testNode.addNodes(nodesTest);
 //<FreeFormCanvas store={testNode} />
-
-
+for (let i = 0; i < numNodes; i++) {
+    nodes.push(new CollectionNodeStore({type: StoreType.Collection, x: 0, y: 0, title: "CollectionTest", nodes: nodesTest }));
+}
+mainNodeCollection.addNodes(nodes);*/
 
 export class App extends React.Component {
     

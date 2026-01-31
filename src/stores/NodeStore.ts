@@ -6,6 +6,7 @@ export enum StoreType {
     Image,
     Video,
     Website,
+    Collection,
 }
 
 export class NodeStore {
@@ -21,10 +22,10 @@ export class NodeStore {
     public y: number = 0;
 
     @observable
-    public width: number = 0;
+    public width: number = 300;
 
     @observable
-    public height: number = 0;
+    public height: number = 300;
 
     constructor() {
         makeObservable(this);
