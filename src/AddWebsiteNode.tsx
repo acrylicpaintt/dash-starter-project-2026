@@ -23,8 +23,7 @@ export class AddWebsiteNode extends React.Component<AddWebsiteNodeProps> {
 
     render() {
         return ( 
-            <button className="AddNodeButton" onClick={this.createNewNode}>New Website Node</button>  
-            // maybe have it so there is add new node of each type, would be better   
+            <button className="AddNodeButton" onClick={this.createNewNode}>+ Website Node</button>  
         );
     }
 }

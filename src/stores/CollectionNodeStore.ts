@@ -14,7 +14,7 @@ export class CollectionNodeStore extends NodeStore {
     public nodes: NodeStore[] = [];
 
     @observable
-    public canvas: FreeFormCanvas | undefined;
+    public canvas: FreeFormCanvas | undefined; //the canvas should be unchanged so yeah
 
     @observable
     public title: string | undefined;
@@ -22,5 +22,13 @@ export class CollectionNodeStore extends NodeStore {
     @action
     public addNodes(stores: NodeStore[]): void {
         this.nodes.push(...stores);
+    }
+    //very similar to nodecollectionsotre
+
+    @action
+    public removeNode(node: NodeStore): void {
+        //helper function to remove nodes
+        this.nodes = this.nodes.filter(n => n !== node);
+
     }
 }

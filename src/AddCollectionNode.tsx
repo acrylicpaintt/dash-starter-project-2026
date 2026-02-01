@@ -31,7 +31,7 @@ testNode.addNodes(nodesTest);
         return (
             
             <button className="AddNodeButton" onClick={this.createNewNode}>
-                New Collection Node
+                + Collection Node
             </button>
         );
     }

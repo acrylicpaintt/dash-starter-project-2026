@@ -2,7 +2,7 @@
     padding: 10px;
     position: relative;
     background-color: rgb(155, 125, 183);
-    width: 150px;
+    width: 120px;
     height: 60px; 
     z-index: 1000; //otherwise shows up behind the nodes and is unable to be interacted with - FIND ANOTHER OWRK AROUND 
     border-radius: 30px; //rounded button
@@ -10,10 +10,13 @@
     
     color: white;
     font-family: 'Hind Siliguri', sans-serif;
-    box-shadow: 0 0 10px grey;
+    box-shadow: 0 0 9px grey;
     margin-left: 10px;
     margin-top: 10px;
     cursor: pointer;
+
+    white-space: nowrap;
+   
 
     &:hover {
         background-color: rgb(126, 96, 155);
@@ -25,4 +28,3 @@
     }
 }
 
-//maybe add a menu bar for stuff

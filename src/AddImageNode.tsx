@@ -24,7 +24,7 @@ export class AddImageNode extends React.Component<AddImageNodeProps> {
         return ( 
             <button className="AddNodeButton" onClick=
                 {this.createNewNode}>
-                    New Image Node</button>  
+                    + Image Node</button>  
         );
     }
 }

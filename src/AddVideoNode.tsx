@@ -23,8 +23,7 @@ export class AddVideoNode extends React.Component<AddVideoNodeProps> {
 
     render() {
         return ( 
-            <button className="AddNodeButton" onClick={this.createNewNode}>New Video Node</button>  
-            // maybe have it so there is add new node of each type, would be better   
+            <button className="AddNodeButton" onClick={this.createNewNode}>+ Video Node</button>  
         );
     }
 }

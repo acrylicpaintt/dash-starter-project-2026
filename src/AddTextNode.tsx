@@ -22,7 +22,7 @@ export class AddTextNode extends React.Component<AddTextNodeProps> {
 
     render() {
         return ( 
-            <button className="AddNodeButton" onClick={this.createNewNode}>New Text Node</button>  
+            <button className="AddNodeButton" onClick={this.createNewNode}>+ Text Node</button>  
             // maybe have it so there is add new node of each type, would be better   
         );
     }

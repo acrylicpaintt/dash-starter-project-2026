@@ -21,4 +21,11 @@ export class NodeCollectionStore extends NodeStore {
         this.nodes.push(...stores); // This is equivalent to: stores.forEach(store => this.nodes.push(store));
 
     }
+
+    @action
+    public removeNode(node: NodeStore): void {
+        //helper function to remove nodes
+        this.nodes = this.nodes.filter(n => n !== node);
+
+    }
 }
