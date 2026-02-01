@@ -84,6 +84,11 @@ export class MenuBar extends React.Component<MenuBarProps> {
         }
     }
 
+    deselectAll = () => {
+        let selectionStore = this.props.selectionStore;
+        selectionStore.clearAll();
+    }
+
     render() {
         const { currentCollection } = this.state;
         return (
@@ -99,6 +104,7 @@ export class MenuBar extends React.Component<MenuBarProps> {
               <button className="AddNodeButton" onClick={this.setCollectionMain}>Collection: Main</button>
               <button className="AddNodeButton">Tree View</button>
               <button className="AddNodeButton">Main View</button>
+              <button className="AddNodeButton" onClick={this.deselectAll}>Deselect All</button>
             </div>
             
         );

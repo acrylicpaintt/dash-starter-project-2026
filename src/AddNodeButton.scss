@@ -1,8 +1,8 @@
 .AddNodeButton {
-    padding: 10px;
+    padding: 8x;
     position: relative;
     background-color: rgb(155, 125, 183);
-    width: 120px;
+    width: 117px;
     height: 60px; 
     z-index: 1000; //otherwise shows up behind the nodes and is unable to be interacted with - FIND ANOTHER OWRK AROUND 
     border-radius: 30px; //rounded button
@@ -11,7 +11,7 @@
     color: white;
     font-family: 'Hind Siliguri', sans-serif;
     box-shadow: 0 0 9px grey;
-    margin-left: 10px;
+    margin-left: 8px;
     margin-top: 10px;
     cursor: pointer;
 
