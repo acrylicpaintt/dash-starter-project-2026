@@ -24,58 +24,91 @@ export class TextNodeView extends React.Component<TextNodeProps> {
         this.props.store.text = value;
     }
 
+
     render() {
         
         let store = this.props.store;
-        return (
-            <div
-                className="node textNode"
-                ref={this.nodeRef}
-                style={{ transform: store.transform }}
-                onWheel={(e) => {
-                    e.stopPropagation();
-                    e.preventDefault();
-                }}>
-                <TopBar store={store}/>
-                <div className="scroll-box">
-                    <div className="content">
-                        <div className="title">
-                            <ReactQuill 
-                                value={store.title}
-                                onChange={this.handleTitleChange}
-                                theme="snow"
-                                placeholder="Title..."
-                                
-                                modules={{
-                                    toolbar: [
-                                        ['bold', 'italic', 'underline']
-                                    ]
-                                }}
-                            />
-                        </div>
-                        <div className="text">
-                    
-                            <ReactQuill 
-                                value={store.text}
-                                onChange={this.handleTextChange}
-                                theme="snow"
-                                placeholder="Enter text..."
-                                modules={{
-                                    toolbar: [
-                                        ['bold', 'italic', 'underline'],
-                                        [{ 'list': 'ordered'}, { 'list': 'bullet' }]
-                                    ]
-                                }}
-                            />
+        
+        function changeSelect(e: React.MouseEvent) {
+            //alters the selection state of the node
+                e.stopPropagation();
+            store.setSelected(!store.selected);
+            //if it is already selected, deselects it
+            //vice versa
+        }
+        
+        if (store.selected == true) {
+            //if this collection node is selected, return node with a purple border around it
+            return (
+                <div
+                    className="node textNode selected" onClick={changeSelect}
+                    ref={this.nodeRef} style={{ transform: store.transform }}
+                    onWheel={(e) => {
+                        e.stopPropagation();
+                        e.preventDefault();
+                    }}>
+                    <TopBar store={store}/>
+                    <div className="scroll-box">
+                        <div className="content">
+                            <h3 className="title">Text Node</h3>
+                            <div className="text">
+                        
+                                <ReactQuill 
+                                    value={store.text}
+                                    onChange={this.handleTextChange}
+                                    theme="snow"
+                                    placeholder="Enter text..."
+                                    modules={{
+                                        toolbar: [
+                                            ['bold', 'italic', 'underline'],
+                                            [{ 'list': 'ordered'}, { 'list': 'bullet' }]
+                                        ]
+                                    }}
+                                />
+                            </div>
                         </div>
                     </div>
+                    <ResizeHandle store={store} nodeRef={this.nodeRef}/>
                 </div>
-                <ResizeHandle store={store} nodeRef={this.nodeRef}/>
-            </div>
-        );
+            );
+        }
+        else {
+            //if not, remove purple border
+            return(
+                <div
+                    className="node textNode" onClick={changeSelect}
+                    ref={this.nodeRef} style={{ transform: store.transform }}
+                    onWheel={(e) => {
+                        e.stopPropagation();
+                        e.preventDefault();
+                    }}>
+                    <TopBar store={store}/>
+                    <div className="scroll-box">
+                        <div className="content">
+                            <h3 className="title">Text Node</h3>
+                            <div className="text">
+                        
+                                <ReactQuill 
+                                    value={store.text}
+                                    onChange={this.handleTextChange}
+                                    theme="snow"
+                                    placeholder="Enter text..."
+                                    modules={{
+                                        toolbar: [
+                                            ['bold', 'italic', 'underline'],
+                                            [{ 'list': 'ordered'}, { 'list': 'bullet' }]
+                                        ]
+                                    }}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <ResizeHandle store={store} nodeRef={this.nodeRef}/>
+                </div>
+            );
+        }
     }
 }
 
 //currently you have to click on one of the buttons to interact with the text and 
 // //its hard to move around it -- try to see if there is a work around ???? when u have time
-// on this note maybe make it so u are able to edit the titles of other nodes and not just when you make them

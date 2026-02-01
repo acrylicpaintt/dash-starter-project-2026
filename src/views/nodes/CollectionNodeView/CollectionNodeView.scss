@@ -1,13 +1,22 @@
 .node {
     &.collectionNode {
-        background: rgb(180, 133, 202);
+        background: rgb(243, 186, 133);
         height: 100%;
+        
+        
     }
     .freeformcanvas {
         position: absolute;
         top: 0;
         left: 0;
+        
+    }
+    &.selected {
+        border: 5px solid rgba(191, 58, 221);
+
     }
 }
+
+
 
 

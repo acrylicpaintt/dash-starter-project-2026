@@ -6,6 +6,7 @@ import  AddTextNode from './AddTextNode';
 import  AddWebsiteNode from './AddWebsiteNode';
 import  AddVideoNode from './AddVideoNode';
 import  AddCollectionNode from './AddCollectionNode';
+import SelectCollection from './SelectCollection';
 
 import { NodeCollectionStore } from './stores';
 
@@ -24,6 +25,7 @@ export class MenuBar extends React.Component<MenuBarProps> {
               <AddVideoNode nodeCollection={this.props.nodeCollection} />
               <AddWebsiteNode nodeCollection={this.props.nodeCollection} />
               <AddCollectionNode nodeCollection={this.props.nodeCollection} />
+              <SelectCollection nodeCollection={this.props.nodeCollection}/>
               
             </div>
             

@@ -4,6 +4,10 @@
         background: lightblue;
     }
 
+    &.selected {
+        border: 5px solid rgba(191, 58, 221);
+    }
+
     video {
         width: 100%;
     }

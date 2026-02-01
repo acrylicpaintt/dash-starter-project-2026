@@ -17,6 +17,7 @@ export class ResizeHandle extends React.Component<ResizeHandleProps> {
     private startWidth = 0;
     private startHeight = 0;
     private activePointerId: number | null = null;
+    private select = false;
 
     onPointerDown = (e: React.PointerEvent): void => {
         e.stopPropagation();
@@ -31,6 +32,7 @@ export class ResizeHandle extends React.Component<ResizeHandleProps> {
         this.startHeight = node.offsetHeight;
         this.activePointerId = e.pointerId;
         this.isPointerDown = true;
+        this.select = true;
 
         document.removeEventListener("pointermove", this.onPointerMove);
         document.addEventListener("pointermove", this.onPointerMove);

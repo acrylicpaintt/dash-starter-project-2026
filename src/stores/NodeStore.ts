@@ -1,4 +1,4 @@
-import { computed, observable, makeObservable } from "mobx";
+import { computed, action, observable, makeObservable } from "mobx";
 import { Utils } from "../Utils";
 
 export enum StoreType {
@@ -26,6 +26,14 @@ export class NodeStore {
 
     @observable
     public height: number = 300;
+
+    @observable
+    public selected: boolean = false;
+
+    @action
+    public setSelected(selected: boolean) {
+        this.selected = selected;
+    }
 
     constructor() {
         makeObservable(this);

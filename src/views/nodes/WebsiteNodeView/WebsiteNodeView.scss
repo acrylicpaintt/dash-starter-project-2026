@@ -4,8 +4,14 @@
         background: rgb(179, 246, 186);
     }
 
+    &.selected {
+        border: 5px solid rgba(191, 58, 221);
+    }
+
     iframe {
+        position: relative;
         width: 100%;
+        bottom: 0;
 
         //reminder: find a way to make the height match resizing if possible, perhaps a script or setting?
     }

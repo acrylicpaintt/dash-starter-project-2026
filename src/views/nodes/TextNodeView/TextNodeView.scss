@@ -2,6 +2,10 @@
     &.textNode {
         background: pink;
     }
+
+    &.selected {
+       border: 5px solid rgba(191, 58, 221);
+    }
 }
 
 //sets the default size for the title to be larger (it fits better in my opinion)

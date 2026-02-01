@@ -3,6 +3,10 @@
         background: rgb(180, 133, 202);
     }
 
+    &.selected {
+      border: 5px solid rgba(191, 58, 221);
+    }
+
     img {
         width: 100%;
     }
