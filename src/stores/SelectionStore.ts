@@ -32,6 +32,12 @@ export class SelectionStore {
         this.selectedNodes = this.selectedNodes.filter(n => n !== node);
     }
 
+    isSelected(node: NodeStore): boolean {
+        //lets node know if they're selected
+        //lets it be so that they only use selectionStore for all of it
+        return this.selectedNodes.includes(node);
+    }
+
 
 
 }

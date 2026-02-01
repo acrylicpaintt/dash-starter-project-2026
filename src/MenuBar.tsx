@@ -17,19 +17,28 @@ interface MenuBarProps {
 export class MenuBar extends React.Component<MenuBarProps> {
 
     state = {
-        currentCollection: this.props.nodeCollection
+        currentCollection: this.props.nodeCollection,
     };
 
     linkTwo = () => {
+        console.log('hi');
         const { selectionStore, nodeCollection } = this.props;
 
         if (selectionStore.selectedNodes.length !== 2 ) {
+            console.log('not 2 nodes');
             //check that you only selected two
             return;
         }
 
         const nodeOne = this.props.selectionStore.selectedNodes[0];
         const nodeTwo = this.props.selectionStore.selectedNodes[0];
+
+        nodeOne.addLink(nodeTwo);
+        nodeTwo.addLink(nodeOne);
+
+        console.log(nodeOne.linkedNodes);
+
+        return;
 
     }
 
@@ -40,6 +49,7 @@ export class MenuBar extends React.Component<MenuBarProps> {
 
         if (selectionStore.selectedNodes.length !== 1 ) {
             //check that you only selected one
+            console.error("error: more than one thing selected");
             return;
         }
 
@@ -47,9 +57,9 @@ export class MenuBar extends React.Component<MenuBarProps> {
 
         if (!(collection instanceof CollectionNodeStore)) {
         //check the type
+            console.error("error: not a collection");
             return;
         }
-
         this.setState({ currentCollection: collection });
     }
 

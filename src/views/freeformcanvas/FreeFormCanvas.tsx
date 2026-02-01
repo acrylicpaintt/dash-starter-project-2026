@@ -1,11 +1,12 @@
 import { observer } from "mobx-react";
 import * as React from 'react';
-import { NodeCollectionStore, TextNodeStore, StoreType, VideoNodeStore,ImageNodeStore, CollectionNodeStore,WebsiteNodeStore } from "../../stores";
+import { NodeCollectionStore, TextNodeStore, StoreType, VideoNodeStore,ImageNodeStore, CollectionNodeStore,WebsiteNodeStore, SelectionStore } from "../../stores";
 import { TextNodeView, VideoNodeView, ImageNodeView, WebsiteNodeView, CollectionNodeView } from "../nodes";
 import "./FreeFormCanvas.scss";
 
 interface FreeFormProps {
-    store: NodeCollectionStore
+    store: NodeCollectionStore,
+    selectionStore: SelectionStore
 }
 
 @observer
@@ -51,19 +52,19 @@ export class FreeFormCanvas extends React.Component<FreeFormProps> {
                         store.nodes.map(nodeStore => {
                             switch (nodeStore.type) {
                                 case StoreType.Text:
-                                    return (<TextNodeView key={nodeStore.Id} store={nodeStore as TextNodeStore}/>)
+                                    return (<TextNodeView key={nodeStore.Id}  selected={this.props.selectionStore} store={nodeStore as TextNodeStore}/>)
 
                                 case StoreType.Video:
-                                    return (<VideoNodeView key={nodeStore.Id} store={nodeStore as VideoNodeStore}/>)
+                                    return (<VideoNodeView key={nodeStore.Id}  selected={this.props.selectionStore} store={nodeStore as VideoNodeStore}/>)
 
                                 case StoreType.Image:
-                                    return (<ImageNodeView key={nodeStore.Id} store={nodeStore as ImageNodeStore}/>)
+                                    return (<ImageNodeView key={nodeStore.Id}  selected={this.props.selectionStore} store={nodeStore as ImageNodeStore}/>)
 
                                 case StoreType.Website:
-                                    return (<WebsiteNodeView key={nodeStore.Id} store={nodeStore as WebsiteNodeStore}/>)
+                                    return (<WebsiteNodeView key={nodeStore.Id}  selected={this.props.selectionStore} store={nodeStore as WebsiteNodeStore}/>)
 
                                 case StoreType.Collection:
-                                    return (<CollectionNodeView key={nodeStore.Id} store={nodeStore as CollectionNodeStore}/>)
+                                    return (<CollectionNodeView key={nodeStore.Id} selected={this.props.selectionStore} store={nodeStore as CollectionNodeStore}/>)
 
                                 default:
                                     return (null);

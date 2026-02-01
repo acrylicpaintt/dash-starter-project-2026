@@ -1,6 +1,6 @@
 import { observer } from "mobx-react";
 import * as React from 'react';
-import { VideoNodeStore } from "../../../stores";
+import { VideoNodeStore, SelectionStore } from "../../../stores";
 import "./../NodeView.scss";
 import { TopBar } from "./../TopBar";
 import { ResizeHandle } from "./../ResizeHandle";
@@ -8,6 +8,7 @@ import "./VideoNodeView.scss";
 
 interface VideoNodeProps {
     store: VideoNodeStore;
+    selected: SelectionStore;
 }
 
 @observer
@@ -16,13 +17,21 @@ export class VideoNodeView extends React.Component<VideoNodeProps> {
 
     render() {
         let store = this.props.store;
-                
+        let selected = this.props.selected
+        
         function changeSelect(e: React.MouseEvent) {
             //alters the selection state of the node
                 e.stopPropagation();
             store.setSelected(!store.selected);
             //if it is already selected, deselects it
             //vice versa
+            if (store.selected) {
+                selected.addToSelected(store);
+            }
+            else{
+                selected.removeFromSelected(store);
+            }
+                    
         }
         
         if (store.selected == true) {

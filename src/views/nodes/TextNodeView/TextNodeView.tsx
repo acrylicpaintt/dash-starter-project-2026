@@ -2,7 +2,7 @@ import { observer } from "mobx-react";
 import * as React from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import { TextNodeStore } from "../../../stores";
+import { TextNodeStore, SelectionStore } from "../../../stores";
 import { TopBar } from "../TopBar";
 import { ResizeHandle } from "../ResizeHandle";
 import "./../NodeView.scss";
@@ -10,6 +10,7 @@ import "./TextNodeView.scss";
 
 interface TextNodeProps {
     store: TextNodeStore;
+    selected: SelectionStore;
 }
 
 @observer
@@ -28,6 +29,7 @@ export class TextNodeView extends React.Component<TextNodeProps> {
     render() {
         
         let store = this.props.store;
+        let selected = this.props.selected
         
         function changeSelect(e: React.MouseEvent) {
             //alters the selection state of the node
@@ -35,8 +37,14 @@ export class TextNodeView extends React.Component<TextNodeProps> {
             store.setSelected(!store.selected);
             //if it is already selected, deselects it
             //vice versa
+            if (store.selected) {
+                selected.addToSelected(store);
+            }
+            else{
+                selected.removeFromSelected(store);
+            }
+                    
         }
-        
         if (store.selected == true) {
             //if this collection node is selected, return node with a purple border around it
             return (

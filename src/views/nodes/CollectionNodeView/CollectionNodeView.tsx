@@ -1,6 +1,6 @@
 import { observer } from "mobx-react";
 import * as React from "react";
-import { CollectionNodeStore } from "../../../stores";
+import { CollectionNodeStore, SelectionStore } from "../../../stores";
 import { TopBar } from "../TopBar";
 import { ResizeHandle } from "../ResizeHandle";
 import { FreeFormCanvas } from "../../freeformcanvas/FreeFormCanvas";
@@ -8,6 +8,7 @@ import "./CollectionNodeView.scss";
 
 interface CollectionNodeProps {
     store: CollectionNodeStore;
+    selected: SelectionStore;
 }
 
 @observer
@@ -17,6 +18,8 @@ export class CollectionNodeView extends React.Component<CollectionNodeProps> {
      
     render() {
          let store = this.props.store;
+         let selected = this.props.selected;
+        
 
         function changeSelect(e: React.MouseEvent) {
             //alters the selection state of the node
@@ -24,6 +27,13 @@ export class CollectionNodeView extends React.Component<CollectionNodeProps> {
             store.setSelected(!store.selected);
             //if it is already selected, deselects it
             //vice versa
+            if (store.selected) {
+                selected.addToSelected(store);
+            }
+            else{
+                selected.removeFromSelected(store);
+            }
+            
         }
 
             if (store.selected == true) {
@@ -40,7 +50,7 @@ export class CollectionNodeView extends React.Component<CollectionNodeProps> {
                     }}>
                     <TopBar  store={store} />
                     <div className="content">
-                        <FreeFormCanvas store={store} />
+                        <FreeFormCanvas store={store} selectionStore={this.props.selected}/>
                     </div>
                     <ResizeHandle store={store} nodeRef={this.nodeRef} />
                 </div>
@@ -60,7 +70,7 @@ export class CollectionNodeView extends React.Component<CollectionNodeProps> {
                     }}>
                     <TopBar store={store} />
                     <div  className="content">
-                        <FreeFormCanvas store={store} />
+                        <FreeFormCanvas store={store} selectionStore={this.props.selected}/>
                     </div>
                     <ResizeHandle store={store} nodeRef={this.nodeRef} />
                 </div>

@@ -52,7 +52,7 @@ export class App extends React.Component {
     render() {
         return (
             <div className="App">
-              <FreeFormCanvas store={mainNodeCollection} /> 
+              <FreeFormCanvas store={mainNodeCollection} selectionStore={currentSelectionStore} /> 
               <MenuBar nodeCollection={mainNodeCollection} selectionStore={currentSelectionStore} />
               
             </div>

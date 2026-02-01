@@ -1,6 +1,6 @@
 import { observer } from "mobx-react";
 import * as React from 'react';
-import { WebsiteNodeStore } from "../../../stores";
+import { WebsiteNodeStore, SelectionStore } from "../../../stores";
 import "./../NodeView.scss";
 import { TopBar } from "./../TopBar";
 import { ResizeHandle } from "./../ResizeHandle";
@@ -8,6 +8,7 @@ import "./WebsiteNodeView.scss";
 
 interface WebsiteNodeProps {
     store: WebsiteNodeStore;
+    selected: SelectionStore;
 }
 
 @observer
@@ -16,15 +17,24 @@ export class WebsiteNodeView extends React.Component<WebsiteNodeProps> {
 
     render() {
         let store = this.props.store;
-
+        let selected = this.props.selected
+        
         function changeSelect(e: React.MouseEvent) {
+            
             //alters the selection state of the node
             e.stopPropagation();
             store.setSelected(!store.selected);
             //if it is already selected, deselects it
             //vice versa
+            if (store.selected == true) {
+                selected.addToSelected(store);
+                console.log(selected.selectedNodes);
+            }
+            else{
+                selected.removeFromSelected(store);
+            }
+                    
         }
-        
         if (store.selected == true) {
             //alters the selection state of the node
             return (
