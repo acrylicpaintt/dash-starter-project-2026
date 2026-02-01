@@ -1,12 +1,13 @@
 import React from 'react';
 import './App.scss';
-import { NodeCollectionStore, NodeStore, TextNodeStore, StoreType, VideoNodeStore, WebsiteNodeStore, ImageNodeStore, CollectionNodeStore } from './stores';
+import { NodeCollectionStore, SelectionStore, NodeStore, TextNodeStore, StoreType, VideoNodeStore, WebsiteNodeStore, ImageNodeStore, CollectionNodeStore } from './stores';
 import { FreeFormCanvas } from './views/freeformcanvas/FreeFormCanvas';
 import { MenuBar } from './MenuBar';
 
 //let numNodes: number = 300;
 
 const mainNodeCollection = new NodeCollectionStore();
+const currentSelectionStore = new SelectionStore();
 /*
 // create a bunch of text and video nodes (you probably want to delete this at some point)
 let numNodes: number = 300;
@@ -52,7 +53,7 @@ export class App extends React.Component {
         return (
             <div className="App">
               <FreeFormCanvas store={mainNodeCollection} /> 
-              <MenuBar nodeCollection={mainNodeCollection} />
+              <MenuBar nodeCollection={mainNodeCollection} selectionStore={currentSelectionStore} />
               
             </div>
             
