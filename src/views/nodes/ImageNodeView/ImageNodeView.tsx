@@ -3,6 +3,7 @@ import * as React from 'react';
 import { ImageNodeStore, SelectionStore } from "../../../stores";
 import "./../NodeView.scss";
 import { TopBar } from "./../TopBar";
+import { LinkedNodesBar } from "./../LinkedNodesBar";
 import { ResizeHandle } from "./../ResizeHandle";
 import "./ImageNodeView.scss";
 
@@ -28,7 +29,12 @@ export class ImageNodeView extends React.Component<ImageNodeProps> {
             store.setSelected(!store.selected);
             //if it is already selected, deselects it
             //vice versa
-            selected.addToSelected(store);
+            if (store.selected) {
+                selected.addToSelected(store);
+            }
+            else{
+                selected.removeFromSelected(store);
+            }
             
         }
         
@@ -44,6 +50,7 @@ export class ImageNodeView extends React.Component<ImageNodeProps> {
                         </div>
                     </div>
                     <div><ResizeHandle store={store} nodeRef={this.nodeRef}/></div>
+                    <TopBar store={store}/>
                 </div>
             );
         }
@@ -59,6 +66,8 @@ export class ImageNodeView extends React.Component<ImageNodeProps> {
                     </div>
                 </div>
                 <div><ResizeHandle store={store} nodeRef={this.nodeRef}/></div>
+                <TopBar store={store}/>
+                
             </div>
         );
         }

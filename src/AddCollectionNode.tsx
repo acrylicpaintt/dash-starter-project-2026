@@ -11,16 +11,13 @@ interface AddCollectionNodeProps {
 
 export class AddCollectionNode extends React.Component<AddCollectionNodeProps> {
     createNewNode = () => {
-        const testNode = new NodeCollectionStore;
-let nodesTest: NodeStore[] = [];
-nodesTest.push(new TextNodeStore({ type: StoreType.Text, x: 0, y: 0, title: "Teste", text: "TEST"}))
-testNode.addNodes(nodesTest);
+        let emptyNodeStore: NodeStore[] = [];
         const newNode = new CollectionNodeStore({
             type: StoreType.Collection,
             x: window.innerWidth / 2 - this.props.nodeCollection.x - 700, 
             y: window.innerWidth / 2 - this.props.nodeCollection.y - 600,
             title: "Collection Node",
-            nodes: [new TextNodeStore({ type: StoreType.Text, x: 0, y: 0, title: "Teste", text: "TEST"})],
+            nodes: emptyNodeStore,
         });
 
         this.props.nodeCollection.addNodes([newNode]);

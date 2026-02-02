@@ -19,7 +19,6 @@ export class CollectionNodeView extends React.Component<CollectionNodeProps> {
     render() {
          let store = this.props.store;
          let selected = this.props.selected;
-        
 
         function changeSelect(e: React.MouseEvent) {
             //alters the selection state of the node
@@ -50,6 +49,7 @@ export class CollectionNodeView extends React.Component<CollectionNodeProps> {
                     }}>
                     <TopBar  store={store} />
                     <div className="content">
+                        <h3 className="title">Collection Node</h3>
                         <FreeFormCanvas store={store} selectionStore={this.props.selected}/>
                     </div>
                     <ResizeHandle store={store} nodeRef={this.nodeRef} />
@@ -70,6 +70,7 @@ export class CollectionNodeView extends React.Component<CollectionNodeProps> {
                     }}>
                     <TopBar store={store} />
                     <div  className="content">
+                        <h3 className="title">Collection Node</h3>
                         <FreeFormCanvas store={store} selectionStore={this.props.selected}/>
                     </div>
                     <ResizeHandle store={store} nodeRef={this.nodeRef} />

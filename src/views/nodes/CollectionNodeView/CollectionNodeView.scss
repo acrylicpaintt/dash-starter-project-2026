@@ -2,8 +2,8 @@
     &.collectionNode {
         background: rgb(243, 186, 133);
         height: 100%;
-        
-        
+
+        box-shadow: 0 0 5px rgb(160, 102, 210); //to make it visible when theres collection nodes inside collection nodes
     }
     .freeformcanvas {
         position: absolute;
@@ -12,6 +12,7 @@
         
     }
     &.selected {
+        //purple border to indicate node is selected
         border: 5px solid rgba(191, 58, 221);
 
     }
