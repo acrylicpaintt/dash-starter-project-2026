@@ -50,7 +50,7 @@ export class ImageNodeView extends React.Component<ImageNodeProps> {
                         </div>
                     </div>
                     <div><ResizeHandle store={store} nodeRef={this.nodeRef}/></div>
-                    <TopBar store={store}/>
+                    <LinkedNodesBar store={store}/>
                 </div>
             );
         }
@@ -66,7 +66,7 @@ export class ImageNodeView extends React.Component<ImageNodeProps> {
                     </div>
                 </div>
                 <div><ResizeHandle store={store} nodeRef={this.nodeRef}/></div>
-                <TopBar store={store}/>
+                <LinkedNodesBar store={store}/>
                 
             </div>
         );

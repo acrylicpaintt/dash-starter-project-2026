@@ -58,7 +58,7 @@ export class TextNodeView extends React.Component<TextNodeProps> {
                     <TopBar store={store}/>
                     <div className="scroll-box">
                         <div className="content">
-                            <h3 className="title">Text Node</h3>
+                            <h3 className="title">{this.props.store.title}</h3>
                             <div className="text">
                         
                                 <ReactQuill 
@@ -93,7 +93,7 @@ export class TextNodeView extends React.Component<TextNodeProps> {
                     <TopBar store={store}/>
                     <div className="scroll-box">
                         <div className="content">
-                            <h3 className="title">Text Node</h3>
+                            <h3 className="title">{this.props.store.title}</h3>
                             <div className="text">
                         
                                 <ReactQuill 

@@ -9,6 +9,7 @@ export class NodeCollectionStore extends NodeStore {
     constructor() {
         super();
         makeObservable(this);
+
     }
 
     @override
@@ -28,4 +29,5 @@ export class NodeCollectionStore extends NodeStore {
         this.nodes = this.nodes.filter(n => n !== node);
 
     }
+
 }
