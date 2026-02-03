@@ -12,6 +12,14 @@ export class NodeCollectionStore extends NodeStore {
 
     }
 
+    @observable
+    public freeformView: boolean = true; //sets it to be freeform at default
+
+    @action
+    public changeView() {
+        this.freeformView = !this.freeformView; //alters it if it is freeform and vice versa
+    }
+
     @override
     public get transform(): string {
         return "translate(" + this.x + "px," + this.y + "px)"; // for CSS trnsform property

@@ -1,16 +1,18 @@
 import { observer } from "mobx-react";
 import * as React from 'react';
-import { NodeStore } from "../../../stores";
+import { NodeStore, SelectionStore } from "../../../stores";
 import "./TopBar.scss";
 
 interface TopBarProps {
     store: NodeStore;
+    selected: SelectionStore;
 }
 
 @observer
 export class TopBar extends React.Component<TopBarProps> {
 
     private isPointerDown = false;
+    
 
     onPointerDown = (e: React.PointerEvent): void => {
         e.stopPropagation();
@@ -40,6 +42,24 @@ export class TopBar extends React.Component<TopBarProps> {
     }
 
     render() {
-        return <div className="topbar" onPointerDown={this.onPointerDown} />
+        let store = this.props.store;
+        let selected = this.props.selected
+        
+        function changeSelect(e: React.MouseEvent) {
+            //alters the selection state of the node
+            e.stopPropagation();
+            store.setSelected(!store.selected);
+            //if it is already selected, deselects it
+            //vice versa
+            if (store.selected) {
+                selected.addToSelected(store);
+            }
+            else{
+                selected.removeFromSelected(store);
+            }
+                    
+        }
+
+        return <div className="topbar" onClick={changeSelect} onPointerDown={this.onPointerDown}  />
     }
 }

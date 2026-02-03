@@ -1,22 +1,24 @@
 .node {
     &.imageText {
-        color: rgb(162, 86, 99); // make text pink but visible
+      background-color: transparent;
+      position:relative;
+      
+        color: rgb(87, 17, 145); // make text purple but visible
         box-shadow: 0 0 5px rgb(160, 102, 210); //to match collection nodes, adds purple glow/shadow around node
-        position: relative;
     }
 
     &.selected {
         //purple border to indicate node is selected
        border: 5px solid rgba(191, 58, 221);
     }
+    
+
 }
 
 //sets the default size for the title to be larger (it fits better in my opinion)
-.title .ql-editor {
-  font-size: 20px;
-  font-weight: 600;
-}
-
-.text .ql-editor {
-  font-size: 16px;
+.titleImage {
+  display: flex;
+  text-align:center;
+  justify-content: left;
+  line-height: 0px;
 }

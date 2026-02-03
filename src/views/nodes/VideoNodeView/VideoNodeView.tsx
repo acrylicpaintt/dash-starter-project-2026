@@ -34,12 +34,12 @@ export class VideoNodeView extends React.Component<VideoNodeProps> {
                     
         }
         
-        if (store.selected == true) {
+        if (store.selected === true) {
             //if this collection node is selected, return node with a purple border around it
             return (
-                <div className="node videoNode selected"  onClick={changeSelect}
+                <div className="node videoNode selected" 
                 ref={this.nodeRef} style={{ transform: store.transform }}>
-                    <TopBar store={store}/>
+                    <TopBar store={store} selected={selected}/>
                     <div className="scroll-box">
                         <div className="content">
                             <h3 className="title">{store.title}</h3>
@@ -53,9 +53,9 @@ export class VideoNodeView extends React.Component<VideoNodeProps> {
         else {
             //if not, remove purple border
             return (
-                <div className="node videoNode"  onClick={changeSelect}
+                <div className="node videoNode"
                 ref={this.nodeRef} style={{ transform: store.transform }}>
-                    <TopBar store={store}/>
+                    <TopBar store={store} selected={selected}/>
                     <div className="scroll-box">
                         <div className="content">
                             <h3 className="title">{store.title}</h3>

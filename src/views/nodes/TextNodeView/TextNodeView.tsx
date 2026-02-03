@@ -21,37 +21,21 @@ export class TextNodeView extends React.Component<TextNodeProps> {
         this.props.store.text = value;
     }
 
-
     render() {
-        
         let store = this.props.store;
         let selected = this.props.selected
         
-        function changeSelect(e: React.MouseEvent) {
-            //alters the selection state of the node
-            e.stopPropagation();
-            store.setSelected(!store.selected);
-            //if it is already selected, deselects it
-            //vice versa
-            if (store.selected) {
-                selected.addToSelected(store);
-            }
-            else{
-                selected.removeFromSelected(store);
-            }
-                    
-        }
         if (store.selected === true) {
             //if this collection node is selected, return node with a purple border around it
             return (
                 <div
-                    className="node textNode selected" onClick={changeSelect}
+                    className="node textNode selected" 
                     ref={this.nodeRef} style={{ transform: store.transform }}
                     onWheel={(e) => {
                         e.stopPropagation();
                         e.preventDefault();
                     }}>
-                    <TopBar store={store}/>
+                    <TopBar store={store} selected={selected}/>
                     <div className="scroll-box">
                         <div className="content">
                             <h3 className="title">{this.props.store.title}</h3>
@@ -80,13 +64,13 @@ export class TextNodeView extends React.Component<TextNodeProps> {
             //if not, remove purple border
             return(
                 <div
-                    className="node textNode" onClick={changeSelect}
+                    className="node textNode" 
                     ref={this.nodeRef} style={{ transform: store.transform }}
                     onWheel={(e) => {
                         e.stopPropagation();
                         e.preventDefault();
                     }}>
-                    <TopBar store={store}/>
+                    <TopBar store={store} selected={selected}/>
                     <div className="scroll-box">
                         <div className="content">
                             <h3 className="title">{this.props.store.title}</h3>

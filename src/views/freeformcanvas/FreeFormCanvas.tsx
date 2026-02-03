@@ -3,6 +3,7 @@ import * as React from 'react';
 import { NodeCollectionStore, TextNodeStore, StoreType, VideoNodeStore,ImageNodeStore, TreeCollectionNodeStore, FreeformCollectionNodeStore,WebsiteNodeStore, SelectionStore } from "../../stores";
 import { TextNodeView, VideoNodeView, ImageNodeView, WebsiteNodeView, TreeCollectionNodeView, FreeformCollectionNodeView, } from "../nodes";
 import "./FreeFormCanvas.scss";
+import { TreeCanvas } from "../treecanvas/TreeCanvas";
 
 interface FreeFormProps {
     store: NodeCollectionStore,
@@ -44,39 +45,46 @@ export class FreeFormCanvas extends React.Component<FreeFormProps> {
 
     render() {
         let store = this.props.store;
-        return (
-            <div className="freeformcanvas-container" onPointerDown={this.onPointerDown}>
-                <div className="freeformcanvas" style={{ transform: store.transform }}>
-                    {   
-                        // maps each item in the store to be rendered in the canvas based on the node type
-                        store.nodes.map(nodeStore => {
-                            switch (nodeStore.type) {
-                
-                                case StoreType.Text:
-                                    return (<TextNodeView key={nodeStore.Id}  selected={this.props.selectionStore} store={nodeStore as TextNodeStore}/>)
+        if (store.freeformView === true) {
+            return (
+                <div className="freeformcanvas-container" onPointerDown={this.onPointerDown}>
+                    <div className="freeformcanvas" style={{ transform: store.transform }}>
+                        {   
+                            // maps each item in the store to be rendered in the canvas based on the node type
+                            store.nodes.map(nodeStore => {
+                                switch (nodeStore.type) {
+                    
+                                    case StoreType.Text:
+                                        return (<TextNodeView key={nodeStore.Id}  selected={this.props.selectionStore} store={nodeStore as TextNodeStore}/>)
 
-                                case StoreType.Video:
-                                    return (<VideoNodeView key={nodeStore.Id}  selected={this.props.selectionStore} store={nodeStore as VideoNodeStore}/>)
+                                    case StoreType.Video:
+                                        return (<VideoNodeView key={nodeStore.Id}  selected={this.props.selectionStore} store={nodeStore as VideoNodeStore}/>)
 
-                                case StoreType.Image:
-                                    return (<ImageNodeView key={nodeStore.Id}  selected={this.props.selectionStore} store={nodeStore as ImageNodeStore}/>)
+                                    case StoreType.Image:
+                                        return (<ImageNodeView key={nodeStore.Id}  selected={this.props.selectionStore} store={nodeStore as ImageNodeStore}/>)
 
-                                case StoreType.Website:
-                                    return (<WebsiteNodeView key={nodeStore.Id}  selected={this.props.selectionStore} store={nodeStore as WebsiteNodeStore}/>)
+                                    case StoreType.Website:
+                                        return (<WebsiteNodeView key={nodeStore.Id}  selected={this.props.selectionStore} store={nodeStore as WebsiteNodeStore}/>)
 
-                                case StoreType.CollectionFreeform:
-                                    return (<FreeformCollectionNodeView key={nodeStore.Id} selected={this.props.selectionStore} store={nodeStore as FreeformCollectionNodeStore}/>)
-                                
-                                case StoreType.CollectionTree:
-                                    return (<TreeCollectionNodeView key={nodeStore.Id}  selected={this.props.selectionStore} store={nodeStore as TreeCollectionNodeStore}/>)                                
-                                
-                                default:
-                                    return (null);
-                            }
-                        })
-                    }
+                                    case StoreType.CollectionFreeform:
+                                        return (<FreeformCollectionNodeView key={nodeStore.Id} selected={this.props.selectionStore} store={nodeStore as FreeformCollectionNodeStore}/>)
+                                    
+                                    case StoreType.CollectionTree:
+                                        return (<TreeCollectionNodeView key={nodeStore.Id}  selected={this.props.selectionStore} store={nodeStore as TreeCollectionNodeStore}/>)                                
+                                    
+                                    default:
+                                        return (null);
+                                }
+                            })
+                        }
+                    </div>
                 </div>
-            </div>
-        );
+            );
+        }
+        else {
+            return ( 
+            <TreeCanvas store={store} selectionStore={this.props.selectionStore}/>
+            );
+        }
     }
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import './MenuBar.scss';
+import { observer } from 'mobx-react';
 
 import { TreeCollectionNodeStore, FreeformCollectionNodeStore, SelectionStore, NodeCollectionStore, VideoNodeStore,
     TextNodeStore, ImageNodeStore, WebsiteNodeStore, StoreType, NodeStore} from './stores';
@@ -9,6 +10,7 @@ interface MenuBarProps {
     selectionStore: SelectionStore;
 }
 
+@observer
 export class MenuBar extends React.Component<MenuBarProps> {
 
     state = {
@@ -194,23 +196,28 @@ export class MenuBar extends React.Component<MenuBarProps> {
         this.setState({count: this.state.count + 1}); //updates count to add a node
         
     };
+
+    switchView = () => {
+        this.props.nodeCollection.changeView();
+    }
+
     
     render() {
 
         return (
             <div className="MenuBar">
-              <button className="menuButton" onClick={this.createNewTextNode}>+ Text Node</button>
-              <button className="menuButton" onClick={this.createNewImageNode}>+ Image Node</button>
-              <button className="menuButton" onClick={this.createNewVideoNode}>+ Video Node</button>
-              <button className="menuButton" onClick={this.createNewWebsiteNode}>+ Website Node</button>
-              <button className="menuButton" onClick={this.createNewFreeFormCollectionNode}>+ Free Collection</button>
-               <button className="menuButton" onClick={this.createNewTreeCollectionNode}>+ Tree Collection</button>
-              <button className="menuButton" onClick={this.setCurrentCollection}>Set Collection</button>
-              <button className="menuButton" onClick={this.linkTwo}>Link</button>
-              <button className="menuButton" onClick={this.deleteNode}>Delete Selected</button>
-              <button className="menuButton" onClick={this.setCollectionMain}>Collection: Main</button>
-              <button className="menuButton">Switch Main View</button>
-              <button className="menuButton" onClick={this.deselectAll}>Deselect All</button>
+                <button className="menuButton" onClick={this.createNewTextNode}>+ Text Node</button>
+                <button className="menuButton" onClick={this.createNewImageNode}>+ Image Node</button>
+                <button className="menuButton" onClick={this.createNewVideoNode}>+ Video Node</button>
+                <button className="menuButton" onClick={this.createNewWebsiteNode}>+ Website Node</button>
+                <button className="menuButton" onClick={this.createNewFreeFormCollectionNode}>+ Free Collection</button>
+                <button className="menuButton" onClick={this.createNewTreeCollectionNode}>+ Tree Collection</button>
+                <button className="menuButton" onClick={this.setCurrentCollection}>Set Collection</button>
+                <button className="menuButton" onClick={this.linkTwo}>Link Two</button>
+                <button className="menuButton" onClick={this.deleteNode}>Delete Selected</button>
+                <button className="menuButton" onClick={this.setCollectionMain}>Collection: Main</button>
+                <button className="menuButton" onClick={this.switchView}>Switch Main View</button>
+                <button className="menuButton" onClick={this.deselectAll}>Deselect All</button>
             </div>
             
         );

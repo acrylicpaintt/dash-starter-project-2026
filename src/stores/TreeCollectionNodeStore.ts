@@ -27,4 +27,13 @@ export class TreeCollectionNodeStore extends NodeStore {
         this.nodes = this.nodes.filter(n => n !== node);
 
     }
+
+    @observable
+    public freeformView: boolean = false; //sets it to be freeform at default
+    //false because its a treenode view
+
+    @action
+    public changeView() {
+        this.freeformView = !this.freeformView; //alters it if it is freeform and vice versa
+    }
 }

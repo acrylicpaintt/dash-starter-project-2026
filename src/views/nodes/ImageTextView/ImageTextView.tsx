@@ -51,13 +51,13 @@ export class ImageTextView extends React.Component<ImageTextProps> {
             return (
                 <div
                     className="node imageText selected" onClick={changeSelect}
-                    ref={this.nodeRef} style={{ transform: store.transform }}
+                    ref={this.nodeRef} style={{ height: 50, transform: store.transform }}
                     onWheel={(e) => {
                         e.stopPropagation();
                         e.preventDefault();
                     }}>
                     <div className="content">
-                        <h3 className="title">{this.props.store.title}, [Links: {getLinks()}]</h3>
+                        <h3 className="titleImage">{this.props.store.title} [Links: {getLinks()}]</h3>
                     </div>
                     
                 </div>
@@ -68,13 +68,13 @@ export class ImageTextView extends React.Component<ImageTextProps> {
             return(
                 <div
                     className="node imageText" onClick={changeSelect}
-                    ref={this.nodeRef} style={{ transform: store.transform }}
+                    ref={this.nodeRef} style={{ height: 50, transform: store.transform }}
                     onWheel={(e) => {
                         e.stopPropagation();
                         e.preventDefault();
                     }}>
                     <div className="content">
-                        <h3 className="title">{this.props.store.title}, [Links: {getLinks()}]</h3>
+                        <h3 className="titleImage">{this.props.store.title} [Links: {getLinks()}]</h3>
                     </div>
                 </div>
                     

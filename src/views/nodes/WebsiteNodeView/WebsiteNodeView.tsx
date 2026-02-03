@@ -18,29 +18,13 @@ export class WebsiteNodeView extends React.Component<WebsiteNodeProps> {
     render() {
         let store = this.props.store;
         let selected = this.props.selected
-        
-        function changeSelect(e: React.MouseEvent) {
-            
-            //alters the selection state of the node
-            e.stopPropagation();
-            store.setSelected(!store.selected);
-            //if it is already selected, deselects it
-            //vice versa
-            if (store.selected == true) {
-                selected.addToSelected(store);
-                console.log(selected.selectedNodes);
-            }
-            else{
-                selected.removeFromSelected(store);
-            }
-                    
-        }
+      
         if (store.selected == true) {
             //alters the selection state of the node
             return (
                 <div className="node websiteNode selected"  ref={this.nodeRef} 
-                onClick={changeSelect} style={{ transform: store.transform }}>
-                    <TopBar store={store}/>
+                 style={{ transform: store.transform }}>
+                    <TopBar store={store} selected={selected}/>
                     <div className="scroll-box">
                         <div className="content">
                             <h3 className="title">{store.title}</h3>
@@ -53,9 +37,9 @@ export class WebsiteNodeView extends React.Component<WebsiteNodeProps> {
         }
         else {
             return (
-                <div className="node websiteNode"  onClick={changeSelect} 
+                <div className="node websiteNode"  
                 ref={this.nodeRef} style={{ transform: store.transform }}>
-                    <TopBar store={store}/>
+                    <TopBar store={store} selected={selected}/>
                     <div className="scroll-box">
                         <div className="content">
                             <h3 className="title">{store.title}</h3>

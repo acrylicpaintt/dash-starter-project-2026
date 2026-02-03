@@ -1,23 +1,38 @@
 import { observer } from "mobx-react";
 import * as React from "react";
-import { TreeCollectionNodeStore, SelectionStore } from "../../../stores";
-import { TopBar } from "../TopBar";
-import { ResizeHandle } from "../ResizeHandle";
+import { FreeformCollectionNodeStore, SelectionStore } from "../../../stores";
 import { TreeCanvas } from "../../treecanvas/TreeCanvas";
-import "./TreeCollectionNodeView.scss";
+import "./FreeformCollectionTextView.scss";
 
-interface TreeCollectionNodeProps {
-    store: TreeCollectionNodeStore;
+interface FreeformCollectionTextProps {
+    store: FreeformCollectionNodeStore;
     selected: SelectionStore;
 }
 
 @observer
-export class TreeCollectionNodeView extends React.Component<TreeCollectionNodeProps> {
+export class FreeformCollectionTextView extends React.Component<FreeformCollectionTextProps> {
     private nodeRef = React.createRef<HTMLDivElement>();
 
     render() {
+        this.props.store.freeformView = false;
+        
          let store = this.props.store;
          let selected = this.props.selected;
+
+        function changeSelect(e: React.MouseEvent) {
+            //alters the selection state of the node
+            e.stopPropagation();
+            e.preventDefault();
+            store.setSelected(!store.selected);
+            //if it is already selected, deselects it
+            //vice versa
+            if (store.selected) {
+                selected.addToSelected(store);
+            }
+            else{
+                selected.removeFromSelected(store);
+            }
+        }
 
         function getLinks(): string {
             //returns all of the linked nodes as a list to be printed out
@@ -31,27 +46,35 @@ export class TreeCollectionNodeView extends React.Component<TreeCollectionNodePr
                 return toReturn.substring(0,toReturn.length-2);
             }            
         }
+        //fix this
+        let height = store.height;
 
+        if (store.parent) {
+            height = store.parent.height;
+        }
+
+        let width = store.width;
+
+        if (store.parent) {
+            width = store.parent.width;
+        }
 
             if (store.selected === true) {
                 //if this collection node is selected, return node with a purple border around it
                 return (
                 <div
-                    className="node collectionTreeNode selected"
+                    className="node freeCollectionText selected" onClick={changeSelect} //onClick so if anywhere on the node is clicked, will be selectd/deselected
                     ref={this.nodeRef}
                     style={{
-                        transform: store.transform,
-                        width: store.width,
-                        height: store.height,
+                        width: width,
+                    
                         
                     }}>
-                    <TopBar store={store} selected={selected}/>
                     <div className="scroll-box">
                         <div className="content">
                             <h3 className="title">{this.props.store.title} [Links: {getLinks()}]</h3>
                             <TreeCanvas store={store} selectionStore={this.props.selected}/>
                         </div>
-                        <ResizeHandle store={store} nodeRef={this.nodeRef} />
                     </div>
                 </div>
                 );
@@ -59,21 +82,19 @@ export class TreeCollectionNodeView extends React.Component<TreeCollectionNodePr
                 //if not, remove purple border
                 return (
                 <div
-                    className="node collectionTreeNode"
+                    className="node freeCollectionText" //onClick so if anywhere on the node is clicked, will be selectd/deselected
+                    onClick={changeSelect}
                     ref={this.nodeRef}
                     style={{
-                        transform: store.transform,
-                        width: store.width,
-                        height: store.height,
+                        width: width,
+                        height: 85, //FIX
                         
                     }}>
-                    <TopBar store={store} selected={selected}/>
                     <div className="scroll-box">
                         <div  className="content">
                             <h3 className="title">{this.props.store.title} [Links: {getLinks()}]</h3>
                             <TreeCanvas store={store} selectionStore={this.props.selected}/>
                         </div>
-                        <ResizeHandle store={store} nodeRef={this.nodeRef} />
                     </div>
                     </div>
 

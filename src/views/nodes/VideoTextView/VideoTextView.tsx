@@ -1,22 +1,17 @@
 import { observer } from "mobx-react";
 import * as React from 'react';
 import 'react-quill/dist/quill.snow.css';
-import { TextNodeStore, SelectionStore } from "../../../stores";
-import "./../TextView.scss";
-import "./TextTextView.scss";
+import { VideoNodeStore, SelectionStore } from "../../../stores";
+import "./VideoTextView.scss";
 
-interface TextTextProps {
-    store: TextNodeStore;
+interface VideoTextProps {
+    store: VideoNodeStore;
     selected: SelectionStore;
 }
 
 @observer
-export class TextTextView extends React.Component<TextTextProps> {
+export class VideoTextView extends React.Component<VideoTextProps> {
     private nodeRef = React.createRef<HTMLDivElement>();
-
-    handleTextChange = (value: string) => {
-        this.props.store.text = value;
-    }
 
     render() {
         
@@ -54,7 +49,7 @@ export class TextTextView extends React.Component<TextTextProps> {
             //if this collection node is selected, return node with a purple border around it
             return (
                 <div
-                    className="node textText selected" onClick={changeSelect}
+                    className="node videoText selected" onClick={changeSelect}
                     ref={this.nodeRef} style={{ height: 50, width: this.props.store.width, transform: store.transform }}
                     onWheel={(e) => {
                         e.stopPropagation();
@@ -71,7 +66,7 @@ export class TextTextView extends React.Component<TextTextProps> {
             //if not, remove purple border
             return(
                 <div
-                    className="node textText" onClick={changeSelect}
+                    className="node videoText" onClick={changeSelect}
                     ref={this.nodeRef} style={{ height: 50, width: this.props.store.width, transform: store.transform }}
                     onWheel={(e) => {
                         e.stopPropagation();

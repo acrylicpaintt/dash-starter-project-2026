@@ -1,22 +1,17 @@
 import { observer } from "mobx-react";
 import * as React from 'react';
 import 'react-quill/dist/quill.snow.css';
-import { TextNodeStore, SelectionStore } from "../../../stores";
-import "./../TextView.scss";
-import "./TextTextView.scss";
+import { WebsiteNodeStore, SelectionStore } from "../../../stores";
+import "./WebsiteTextView.scss";
 
-interface TextTextProps {
-    store: TextNodeStore;
+interface WebsiteTextProps {
+    store: WebsiteNodeStore;
     selected: SelectionStore;
 }
 
 @observer
-export class TextTextView extends React.Component<TextTextProps> {
+export class WebsiteTextView extends React.Component<WebsiteTextProps> {
     private nodeRef = React.createRef<HTMLDivElement>();
-
-    handleTextChange = (value: string) => {
-        this.props.store.text = value;
-    }
 
     render() {
         

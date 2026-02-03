@@ -21,28 +21,13 @@ export class ImageNodeView extends React.Component<ImageNodeProps> {
 
         let store = this.props.store;
         let selected = this.props.selected;
-
-        function changeSelect(e: React.MouseEvent) {
-            //alters the selection state of the node
-            e.stopPropagation();
-            e.preventDefault();
-            store.setSelected(!store.selected);
-            //if it is already selected, deselects it
-            //vice versa
-            if (store.selected) {
-                selected.addToSelected(store);
-            }
-            else{
-                selected.removeFromSelected(store);
-            }
-            
-        }
         
         if (store.selected === true) {
             //if this collection node is selected, return node with a purple border around it
             return (
-                <div className="node imageNode selected" onClick={changeSelect} ref={this.nodeRef} style={{ transform: store.transform }}>
-                    <TopBar store={store}/>
+                <div className="node imageNode selected" 
+                ref={this.nodeRef} style={{ transform: store.transform }}>
+                    <TopBar store={store} selected={selected}/>
                     <div className="scroll-box">
                         <div className="content">
                             <h3 className="title">{store.title}</h3>
@@ -57,8 +42,9 @@ export class ImageNodeView extends React.Component<ImageNodeProps> {
         else {
             //if not, remove purple border
             return (
-            <div className="node imageNode" onClick={changeSelect} ref={this.nodeRef} style={{ transform: store.transform }}>
-                <TopBar store={store}/>
+            <div className="node imageNode" 
+            ref={this.nodeRef} style={{ transform: store.transform }}>
+                <TopBar store={store} selected={selected}/>
                 <div className="scroll-box">
                     <div className="content">
                         <h3 className="title">{store.title}</h3>
