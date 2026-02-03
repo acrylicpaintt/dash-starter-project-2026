@@ -4,5 +4,6 @@ export * from './TextNodeStore';
 export * from './VideoNodeStore';
 export * from './ImageNodeStore';
 export * from './WebsiteNodeStore';
-export * from './CollectionNodeStore';
+export * from './FreeformCollectionNodeStore';
 export * from './SelectionStore';
+export * from './TreeCollectionNodeStore';

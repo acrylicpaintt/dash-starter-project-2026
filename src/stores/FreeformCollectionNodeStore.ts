@@ -2,8 +2,8 @@ import { observable, action, makeObservable } from "mobx";
 import { NodeStore } from "./NodeStore";
 import { FreeFormCanvas } from "../views/freeformcanvas/FreeFormCanvas";
 
-export class CollectionNodeStore extends NodeStore {
-    constructor(initializer: Partial<CollectionNodeStore> = {}) {
+export class FreeformCollectionNodeStore extends NodeStore {
+    constructor(initializer: Partial<FreeformCollectionNodeStore> = {}) {
         super();
         makeObservable(this);
         Object.assign(this, initializer);
@@ -16,12 +16,13 @@ export class CollectionNodeStore extends NodeStore {
     @observable
     public canvas: FreeFormCanvas | undefined; //the canvas should be unchanged so yeah
 
-    @observable
-    public title: string | undefined;
-
     @action
     public addNodes(stores: NodeStore[]): void {
-        this.nodes.push(...stores);
+        stores.forEach(node => {
+            node.parent = this; // set this collection as the parent node
+        });
+        this.nodes.push(...stores); // This is equivalent to: stores.forEach(store => this.nodes.push(store));
+
     }
     //very similar to nodecollectionsotre
 

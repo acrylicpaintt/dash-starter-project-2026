@@ -1,7 +1,7 @@
 import React from 'react';
 import './MenuBar.scss';
 
-import { CollectionNodeStore, SelectionStore, NodeCollectionStore, VideoNodeStore,
+import { TreeCollectionNodeStore, FreeformCollectionNodeStore, SelectionStore, NodeCollectionStore, VideoNodeStore,
     TextNodeStore, ImageNodeStore, WebsiteNodeStore, StoreType, NodeStore} from './stores';
 
 interface MenuBarProps {
@@ -21,23 +21,24 @@ export class MenuBar extends React.Component<MenuBarProps> {
     linkTwo = () => {
         //links two nodes together, adds them to each others list of linked nodes
         //TASK: MAKE SRUE YOU KNOW HOW TO DISPLAY THESE
-        console.log('hi');
-        const { selectionStore, nodeCollection } = this.props;
 
-        if (selectionStore.selectedNodes.length !== 2 ) {
+        if (this.props.selectionStore.selectedNodes.length !== 2 ) {
             console.log('not 2 nodes');
             //check that you only selected two
             return;
         }
 
         const nodeOne = this.props.selectionStore.selectedNodes[0];
-        const nodeTwo = this.props.selectionStore.selectedNodes[0];
+        const nodeTwo = this.props.selectionStore.selectedNodes[1];
+
+        if (nodeOne.parent !== nodeTwo.parent) {
+            //not in the same canvas
+            console.log('not in same canvas/collection');
+            return;
+        }
 
         nodeOne.addLink(nodeTwo);
         nodeTwo.addLink(nodeOne);
-
-        console.log(nodeOne.linkedNodes);
-
         return;
 
     }
@@ -55,7 +56,7 @@ export class MenuBar extends React.Component<MenuBarProps> {
 
         const collection = this.props.selectionStore.selectedNodes[0];
 
-        if (!(collection instanceof CollectionNodeStore)) {
+        if (!(collection instanceof FreeformCollectionNodeStore || collection instanceof TreeCollectionNodeStore)) {
         //check the type
             console.error("error: not a collection");
             return;
@@ -66,21 +67,31 @@ export class MenuBar extends React.Component<MenuBarProps> {
     setCollectionMain = () => {
         //resets it so the collection is the main canvas
         //aka when the user adds nodes, they will add to freeform canvas now
-        const { selectionStore, nodeCollection } = this.props;
+        const { nodeCollection } = this.props;
         this.setState({ currentCollection: nodeCollection });
+        
     }
 
     deleteNode = () => {
-        let selectedNodes = this.props.selectionStore.selectedNodes;
-        for (var index in selectedNodes) {
-            //for all selected Nodes
-            //reminder -> check on collections ..?????
-            this.props.selectionStore.removeFromSelected(selectedNodes[index]);
-            //i think I need this so it doenst hold on this these nodes when they're gone
-            this.props.nodeCollection.removeNode(selectedNodes[index]);
+        // for each node in selection node, deletes them        
+        this.props.selectionStore.selectedNodes.forEach(node => {
+            //checks each node selected
+    
+            // reset to main collection if the current collection gets deleted
+            if (node === this.state.currentCollection) {
+                this.setState({ currentCollection: this.props.nodeCollection });
+            }
 
-        }
-    }
+            if (node.parent !== null) {
+                //if it has a parent 
+                node.parent.removeNode(node);
+                //ensures ALL selected nodes are deleted
+            }
+        });
+        
+        // Clear selection after deleting
+    this.props.selectionStore.clearAll();
+}
 
     deselectAll = () => {
         let selectionStore = this.props.selectionStore;
@@ -94,12 +105,12 @@ export class MenuBar extends React.Component<MenuBarProps> {
             x: window.innerWidth / 2 - this.state.currentCollection.x - 700, 
             y: window.innerWidth / 2 - this.state.currentCollection.y - 600 ,
             title: "Text Node #" + this.state.count.toString(), //title: type of node + how many nodes there are
-            text: "This is a newly created node!" 
+            text: "" 
         });
 
         this.state.currentCollection.addNodes([newTextNode]); //adds to the current collection
         
-        this.state.count = this.state.count + 1; //updates count to add a node
+        this.setState({count: this.state.count + 1}); //updates count to add a node
     }
 
     createNewImageNode = () => {
@@ -114,23 +125,23 @@ export class MenuBar extends React.Component<MenuBarProps> {
         
         this.state.currentCollection.addNodes([newImageNode]); //adds to the current collection
 
-        this.state.count = this.state.count + 1; //updates count to add a node
+        this.setState({count: this.state.count + 1}); //updates count to add a node
     };
 
-    createNewCollectionNode = () => {
+    createNewFreeFormCollectionNode = () => {
          //adds new collection node to the collection
         let emptyNodeStore: NodeStore[] = [];
-        const newNode = new CollectionNodeStore({
-            type: StoreType.Collection,
+        const newNode = new FreeformCollectionNodeStore({
+            type: StoreType.CollectionFreeform,
             x: window.innerWidth / 2 - this.state.currentCollection.x - 700, 
             y: window.innerWidth / 2 - this.state.currentCollection.y - 600,
-            title: "Collection Node #"+ this.state.count.toString(),  //title: type of node + how many nodes there are
+            title: "Freeform Collection Node #"+ this.state.count.toString(),  //title: type of node + how many nodes there are
             nodes: emptyNodeStore,
         });
 
         this.state.currentCollection.addNodes([newNode]); //adds to the current collection
 
-        this.state.count = this.state.count + 1; //updates count to add a node
+        this.setState({count: this.state.count + 1}); //updates count to add a node
     };
 
     createNewWebsiteNode = () => {
@@ -146,8 +157,7 @@ export class MenuBar extends React.Component<MenuBarProps> {
         
         this.state.currentCollection.addNodes([newNode]); //adds to the current collection
 
-        this.state.count = this.state.count + 1; //updates count to add a node
-
+        this.setState({count: this.state.count + 1}); //updates count to add a node
         
     };
 
@@ -164,13 +174,28 @@ export class MenuBar extends React.Component<MenuBarProps> {
         
         this.state.currentCollection.addNodes([newNode]); //adds to the current collection
 
-        this.state.count = this.state.count + 1; //updates count to add a node
+        this.setState({count: this.state.count + 1}); //updates count to add a node
+        
+    };
+
+    createNewTreeCollectionNode = () => {
+        //adds new tree collection node to the collection
+        let emptyNodeStore: NodeStore[] = [];
+        const newTreeNode = new TreeCollectionNodeStore({ 
+            type: StoreType.CollectionTree, 
+            x: window.innerWidth / 2 - this.state.currentCollection.x - 700, 
+            y: window.innerWidth / 2 - this.state.currentCollection.y - 600,
+            title: "Tree Collection Node #" + this.state.count.toString(),  //title: type of node + how many nodes there are            
+            nodes: emptyNodeStore,
+        });
+        
+        this.state.currentCollection.addNodes([newTreeNode]); //adds to the current collection
+
+        this.setState({count: this.state.count + 1}); //updates count to add a node
         
     };
     
     render() {
-        const { currentCollection } = this.state;
-        //makes sure the collection is right 
 
         return (
             <div className="MenuBar">
@@ -178,13 +203,13 @@ export class MenuBar extends React.Component<MenuBarProps> {
               <button className="menuButton" onClick={this.createNewImageNode}>+ Image Node</button>
               <button className="menuButton" onClick={this.createNewVideoNode}>+ Video Node</button>
               <button className="menuButton" onClick={this.createNewWebsiteNode}>+ Website Node</button>
-              <button className="menuButton" onClick={this.createNewCollectionNode}>+ Collection Node</button>
+              <button className="menuButton" onClick={this.createNewFreeFormCollectionNode}>+ Free Collection</button>
+               <button className="menuButton" onClick={this.createNewTreeCollectionNode}>+ Tree Collection</button>
               <button className="menuButton" onClick={this.setCurrentCollection}>Set Collection</button>
               <button className="menuButton" onClick={this.linkTwo}>Link</button>
               <button className="menuButton" onClick={this.deleteNode}>Delete Selected</button>
               <button className="menuButton" onClick={this.setCollectionMain}>Collection: Main</button>
-              <button className="menuButton">Tree View</button>
-              <button className="menuButton">Main View</button>
+              <button className="menuButton">Switch Main View</button>
               <button className="menuButton" onClick={this.deselectAll}>Deselect All</button>
             </div>
             

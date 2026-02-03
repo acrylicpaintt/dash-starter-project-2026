@@ -21,11 +21,11 @@ export class ImageNodeView extends React.Component<ImageNodeProps> {
 
         let store = this.props.store;
         let selected = this.props.selected;
-        let node = this.props;
 
         function changeSelect(e: React.MouseEvent) {
             //alters the selection state of the node
-                e.stopPropagation();
+            e.stopPropagation();
+            e.preventDefault();
             store.setSelected(!store.selected);
             //if it is already selected, deselects it
             //vice versa
@@ -38,7 +38,7 @@ export class ImageNodeView extends React.Component<ImageNodeProps> {
             
         }
         
-        if (store.selected == true) {
+        if (store.selected === true) {
             //if this collection node is selected, return node with a purple border around it
             return (
                 <div className="node imageNode selected" onClick={changeSelect} ref={this.nodeRef} style={{ transform: store.transform }}>

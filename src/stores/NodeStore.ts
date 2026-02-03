@@ -1,19 +1,33 @@
 import { computed, action, observable, makeObservable } from "mobx";
 import { Utils } from "../Utils";
+import { NodeCollectionStore } from "./NodeCollectionStore";
+import { ObservableObjectAdministration } from "mobx/dist/internal";
 
 export enum StoreType {
     Text, 
     Image,
     Video,
     Website,
-    Collection,
+    CollectionFreeform,
+    CollectionTree,
 }
 
 export class NodeStore {
 
+    @observable
+    public parent: NodeCollectionStore | null = null; //to track for tree/collection nodes
+
     public Id: string = Utils.GenerateGuid();
 
     public type: StoreType | null = null;
+    
+    @observable 
+    public title?: string | undefined;
+    //use title here so i can reference -- all nodes have a title
+
+    @observable
+    public treeMode: boolean = false;
+    //to represent in text or as a freeform node or not -- IF NOT USING DELETE
 
     @observable
     public x: number = 0;
@@ -21,7 +35,7 @@ export class NodeStore {
     @observable
     public y: number = 0;
 
-     @observable
+    @observable
     public linkedNodes: NodeStore[] = new Array<NodeStore>();
     //array of all nodes it is linked to
 
@@ -44,8 +58,13 @@ export class NodeStore {
 
     @action
     public addLink(node: NodeStore) {
+        //addLinks
+        if (this.linkedNodes.includes(node)) return; //dont link to the same node twice
+
         this.linkedNodes.push(node);
     }
+
+    //reminder make it so when nodes are deleted the links get deleted too....
 
     constructor() {
         makeObservable(this);

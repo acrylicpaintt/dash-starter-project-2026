@@ -17,10 +17,6 @@ interface TextNodeProps {
 export class TextNodeView extends React.Component<TextNodeProps> {
     private nodeRef = React.createRef<HTMLDivElement>();
 
-    handleTitleChange = (value: string) => {
-        this.props.store.title = value;
-    }
-
     handleTextChange = (value: string) => {
         this.props.store.text = value;
     }
@@ -33,7 +29,7 @@ export class TextNodeView extends React.Component<TextNodeProps> {
         
         function changeSelect(e: React.MouseEvent) {
             //alters the selection state of the node
-                e.stopPropagation();
+            e.stopPropagation();
             store.setSelected(!store.selected);
             //if it is already selected, deselects it
             //vice versa
@@ -45,7 +41,7 @@ export class TextNodeView extends React.Component<TextNodeProps> {
             }
                     
         }
-        if (store.selected == true) {
+        if (store.selected === true) {
             //if this collection node is selected, return node with a purple border around it
             return (
                 <div

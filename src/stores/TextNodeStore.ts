@@ -3,15 +3,14 @@ import { NodeStore } from "./NodeStore";
 
 export class TextNodeStore extends NodeStore {
 
-    constructor(initializer: Partial<TextNodeStore>) {
-        super();
-        makeObservable(this);
-        Object.assign(this, initializer);
-    }
-
-    @observable
-    public title: string = "";
-
     @observable
     public text: string = "";
+
+    constructor(initializer: Partial<TextNodeStore>) {
+        super();
+        
+        Object.assign(this, initializer);
+        
+    }
+
 }

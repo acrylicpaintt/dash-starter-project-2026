@@ -1,21 +1,15 @@
-import { makeObservable, override, observable, action } from "mobx";
+import { observable, action, makeObservable } from "mobx";
 import { NodeStore } from "./NodeStore";
 
-export class NodeCollectionStore extends NodeStore {
-
-    @observable
-    public nodes: NodeStore[] = new Array<NodeStore>();
-
-    constructor() {
+export class TreeCollectionNodeStore extends NodeStore {
+    constructor(initializer: Partial<TreeCollectionNodeStore>) {
         super();
         makeObservable(this);
-
+        Object.assign(this, initializer);
     }
 
-    @override
-    public get transform(): string {
-        return "translate(" + this.x + "px," + this.y + "px)"; // for CSS trnsform property
-    }
+    @observable
+    public nodes: NodeStore[] = [];
 
     @action
     public addNodes(stores: NodeStore[]): void {
@@ -25,6 +19,7 @@ export class NodeCollectionStore extends NodeStore {
         this.nodes.push(...stores); // This is equivalent to: stores.forEach(store => this.nodes.push(store));
 
     }
+    //very similar to nodecollectionsotre
 
     @action
     public removeNode(node: NodeStore): void {
@@ -32,5 +27,4 @@ export class NodeCollectionStore extends NodeStore {
         this.nodes = this.nodes.filter(n => n !== node);
 
     }
-
 }

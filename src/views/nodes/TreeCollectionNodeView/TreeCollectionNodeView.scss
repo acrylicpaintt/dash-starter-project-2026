@@ -1,0 +1,24 @@
+.node {
+    &.collectionTreeNode {
+        background: rgb(171, 122, 255);
+        height: 100%;
+
+        box-shadow: 0 0 5px rgb(160, 102, 210); //to make it visible when theres collection nodes inside collection nodes
+    }
+    &.treecanvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        
+    }
+    &.selected {
+        //purple border to indicate node is selected
+        border: 5px solid rgba(191, 58, 221);
+
+    }
+}
+
+
+
+
+

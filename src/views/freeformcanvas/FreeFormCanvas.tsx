@@ -1,7 +1,7 @@
 import { observer } from "mobx-react";
 import * as React from 'react';
-import { NodeCollectionStore, TextNodeStore, StoreType, VideoNodeStore,ImageNodeStore, CollectionNodeStore,WebsiteNodeStore, SelectionStore } from "../../stores";
-import { TextNodeView, VideoNodeView, ImageNodeView, WebsiteNodeView, CollectionNodeView } from "../nodes";
+import { NodeCollectionStore, TextNodeStore, StoreType, VideoNodeStore,ImageNodeStore, TreeCollectionNodeStore, FreeformCollectionNodeStore,WebsiteNodeStore, SelectionStore } from "../../stores";
+import { TextNodeView, VideoNodeView, ImageNodeView, WebsiteNodeView, TreeCollectionNodeView, FreeformCollectionNodeView, } from "../nodes";
 import "./FreeFormCanvas.scss";
 
 interface FreeFormProps {
@@ -51,6 +51,7 @@ export class FreeFormCanvas extends React.Component<FreeFormProps> {
                         // maps each item in the store to be rendered in the canvas based on the node type
                         store.nodes.map(nodeStore => {
                             switch (nodeStore.type) {
+                
                                 case StoreType.Text:
                                     return (<TextNodeView key={nodeStore.Id}  selected={this.props.selectionStore} store={nodeStore as TextNodeStore}/>)
 
@@ -63,9 +64,12 @@ export class FreeFormCanvas extends React.Component<FreeFormProps> {
                                 case StoreType.Website:
                                     return (<WebsiteNodeView key={nodeStore.Id}  selected={this.props.selectionStore} store={nodeStore as WebsiteNodeStore}/>)
 
-                                case StoreType.Collection:
-                                    return (<CollectionNodeView key={nodeStore.Id} selected={this.props.selectionStore} store={nodeStore as CollectionNodeStore}/>)
-
+                                case StoreType.CollectionFreeform:
+                                    return (<FreeformCollectionNodeView key={nodeStore.Id} selected={this.props.selectionStore} store={nodeStore as FreeformCollectionNodeStore}/>)
+                                
+                                case StoreType.CollectionTree:
+                                    return (<TreeCollectionNodeView key={nodeStore.Id}  selected={this.props.selectionStore} store={nodeStore as TreeCollectionNodeStore}/>)                                
+                                
                                 default:
                                     return (null);
                             }
