@@ -49,7 +49,7 @@ export class CollectionNodeView extends React.Component<CollectionNodeProps> {
                     }}>
                     <TopBar  store={store} />
                     <div className="content">
-                        <h3 className="title">Collection Node</h3>
+                        <h3 className="title">{this.props.store.title}</h3>
                         <FreeFormCanvas store={store} selectionStore={this.props.selected}/>
                     </div>
                     <ResizeHandle store={store} nodeRef={this.nodeRef} />
@@ -70,7 +70,7 @@ export class CollectionNodeView extends React.Component<CollectionNodeProps> {
                     }}>
                     <TopBar store={store} />
                     <div  className="content">
-                        <h3 className="title">Collection Node</h3>
+                        <h3 className="title">{this.props.store.title}</h3>
                         <FreeFormCanvas store={store} selectionStore={this.props.selected}/>
                     </div>
                     <ResizeHandle store={store} nodeRef={this.nodeRef} />

@@ -21,11 +21,12 @@ export class NodeStore {
     @observable
     public y: number = 0;
 
-    @observable
-    public width: number = 300;
+     @observable
+    public linkedNodes: NodeStore[] = new Array<NodeStore>();
+    //array of all nodes it is linked to
 
     @observable
-    public linkedNodes: NodeStore[] = new Array<NodeStore>();
+    public width: number = 300;
 
     @observable
     public height: number = 300;
