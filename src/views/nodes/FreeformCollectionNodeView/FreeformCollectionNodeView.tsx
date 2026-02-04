@@ -16,6 +16,15 @@ export class FreeformCollectionNodeView extends React.Component<FreeformCollecti
     private nodeRef = React.createRef<HTMLDivElement>();
 
     render() {
+        if (this.props.store.parent) {
+            if (this.props.store.parent.freeformView === true) {
+                this.props.store.freeformView = true;
+            }
+            else {
+                this.props.store.freeformView = false;
+            }
+        }
+
          let store = this.props.store;
          let selected = this.props.selected;
 

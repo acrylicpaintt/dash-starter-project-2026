@@ -13,6 +13,9 @@ interface MenuBarProps {
 @observer
 export class MenuBar extends React.Component<MenuBarProps> {
 
+    //all buttons are in menubar instead of individual areas so that I can navigate which collection is selected and delete 
+    //across multiple selections/areas better
+
     state = {
         currentCollection: this.props.nodeCollection, //which collection to add nodes to
         count: 0, //counts how many nodes have been here
@@ -104,8 +107,8 @@ export class MenuBar extends React.Component<MenuBarProps> {
         //adds new text node to the collection
         const newTextNode = new TextNodeStore({ 
             type: StoreType.Text, 
-            x: window.innerWidth / 2 - this.state.currentCollection.x - 700, 
-            y: window.innerWidth / 2 - this.state.currentCollection.y - 600 ,
+            x: this.state.currentCollection.x, 
+            y: this.state.currentCollection.y,
             title: "Text Node #" + this.state.count.toString(), //title: type of node + how many nodes there are
             text: "" 
         });
@@ -185,8 +188,8 @@ export class MenuBar extends React.Component<MenuBarProps> {
         let emptyNodeStore: NodeStore[] = [];
         const newTreeNode = new TreeCollectionNodeStore({ 
             type: StoreType.CollectionTree, 
-            x: window.innerWidth / 2 - this.state.currentCollection.x - 700, 
-            y: window.innerWidth / 2 - this.state.currentCollection.y - 600,
+            x: window.innerWidth / 2, 
+            y: window.innerWidth / 2 ,
             title: "Tree Collection Node #" + this.state.count.toString(),  //title: type of node + how many nodes there are            
             nodes: emptyNodeStore,
         });

@@ -53,32 +53,36 @@ export class TextTextView extends React.Component<TextTextProps> {
         if (store.selected === true) {
             //if this collection node is selected, return node with a purple border around it
             return (
-                <div
-                    className="node textText selected" onClick={changeSelect}
-                    ref={this.nodeRef} style={{ height: 50, width: this.props.store.width, transform: store.transform }}
-                    onWheel={(e) => {
-                        e.stopPropagation();
-                        e.preventDefault();
-                    }}>
-                    <div className="content">
-                        <h3 className="titleText">{this.props.store.title} [Links: {getLinks()}]</h3>
+                <div className="scroll-box">
+                    <div
+                        className="node textText selected" onClick={changeSelect}
+                        ref={this.nodeRef} 
+                        onWheel={(e) => {
+                            e.stopPropagation();
+                            e.preventDefault();
+                        }}>
+                        <div className="content">
+                            <h3 className="titleText">{this.props.store.title} [Links: {getLinks()}]</h3>
+                        </div>
+                        
                     </div>
-                    
                 </div>
             );
         }
         else {
             //if not, remove purple border
             return(
-                <div
-                    className="node textText" onClick={changeSelect}
-                    ref={this.nodeRef} style={{ height: 50, width: this.props.store.width, transform: store.transform }}
-                    onWheel={(e) => {
-                        e.stopPropagation();
-                        e.preventDefault();
-                    }}>
-                    <div className="content">
-                        <h3 className="titleText">{this.props.store.title} [Links: {getLinks()}]</h3>
+                <div className="scroll-box">
+                    <div
+                        className="node textText" onClick={changeSelect}
+                        ref={this.nodeRef} 
+                        onWheel={(e) => {
+                            e.stopPropagation();
+                            e.preventDefault();
+                        }}>
+                        <div className="content">
+                            <h3 className="titleText">{this.props.store.title} [Links: {getLinks()}]</h3>
+                        </div>
                     </div>
                 </div>
                     

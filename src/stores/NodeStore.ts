@@ -15,7 +15,7 @@ export enum StoreType {
 export class NodeStore {
 
     @observable
-    public parent: NodeCollectionStore | null = null; //to track for tree/collection nodes
+    public parent: NodeCollectionStore  | null = null; //to track for tree/collection nodes
 
     public Id: string = Utils.GenerateGuid();
 

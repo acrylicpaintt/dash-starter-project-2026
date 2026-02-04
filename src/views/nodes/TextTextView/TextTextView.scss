@@ -3,6 +3,8 @@
       background-color: transparent;
       position:relative;
       height: auto;
+      width: auto;
+      overflow-wrap: break-word;
 
       color: rgb(87, 17, 145); // make text purple but visible
       box-shadow: 0 0 5px rgb(160, 102, 210); //to match collection nodes, adds purple glow/shadow around node
@@ -21,5 +23,5 @@
   display: flex;
   text-align:center;
   justify-content: left;
-  line-height: 0px;
+  white-space: nowrap;
 }

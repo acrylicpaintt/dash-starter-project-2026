@@ -65,8 +65,7 @@ export class TreeCollectionTextView extends React.Component<TreeCollectionTextPr
                     ref={this.nodeRef}
                     style={{
                         transform: store.transform,
-                        width: width,
-                        height: height,
+                        
                         
                     }}>
                     <div className="scroll-box">
@@ -86,8 +85,6 @@ export class TreeCollectionTextView extends React.Component<TreeCollectionTextPr
                     ref={this.nodeRef}
                     style={{
                         transform: store.transform,
-                        width: width,
-                        height: height, //FIX
                         
                     }}>
                     <div className="scroll-box">
