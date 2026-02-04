@@ -3,6 +3,7 @@
       background-color: transparent;
       position:relative;
       height: auto;
+      width: auto;
       
       color: rgb(87, 17, 145); // make text purple but visible
       box-shadow: 0 0 5px rgb(160, 102, 210); //to match collection nodes, adds purple glow/shadow around node
@@ -19,8 +20,8 @@
 
 //sets the default size for the title to be larger (it fits better in my opinion)
 .titleImage {
+  text-wrap: normal;
   display: flex;
   text-align:center;
   justify-content: left;
-  line-height: 0px;
 }

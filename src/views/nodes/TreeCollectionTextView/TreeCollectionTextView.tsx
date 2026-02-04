@@ -44,30 +44,13 @@ export class TreeCollectionTextView extends React.Component<TreeCollectionTextPr
                 return toReturn.substring(0,toReturn.length-2);
             }            
         }
-        //fix this
-        let height = store.height;
-
-        if (store.parent) {
-            height = store.parent.height;
-        }
-
-        let width = store.width;
-
-        if (store.parent) {
-            width = store.parent.width;
-        }
 
             if (store.selected === true) {
                 //if this collection node is selected, return node with a purple border around it
                 return (
                 <div
                     className="node collectionTreeText selected" onClick={changeSelect} //onClick so if anywhere on the node is clicked, will be selectd/deselected
-                    ref={this.nodeRef}
-                    style={{
-                        transform: store.transform,
-                        
-                        
-                    }}>
+                    ref={this.nodeRef}>
                     <div className="scroll-box">
                         <div className="content">
                             <h3 className="title">{this.props.store.title} [Links: {getLinks()}]</h3>
@@ -82,11 +65,7 @@ export class TreeCollectionTextView extends React.Component<TreeCollectionTextPr
                 <div
                     className="node collectionTreeText" //onClick so if anywhere on the node is clicked, will be selectd/deselected
                     onClick={changeSelect}
-                    ref={this.nodeRef}
-                    style={{
-                        transform: store.transform,
-                        
-                    }}>
+                    ref={this.nodeRef}>
                     <div className="scroll-box">
                         <div  className="content">
                             <h3 className="title">{this.props.store.title} [Links: {getLinks()}]</h3>

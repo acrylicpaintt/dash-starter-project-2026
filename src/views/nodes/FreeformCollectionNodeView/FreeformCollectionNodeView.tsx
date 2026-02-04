@@ -17,6 +17,7 @@ export class FreeformCollectionNodeView extends React.Component<FreeformCollecti
 
     render() {
         if (this.props.store.parent) {
+            //need this because freeform collections alter how they're viewed when in a tree canvas vs. in freeform
             if (this.props.store.parent.freeformView === true) {
                 this.props.store.freeformView = true;
             }

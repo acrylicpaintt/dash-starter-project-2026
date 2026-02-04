@@ -48,36 +48,32 @@ export class VideoTextView extends React.Component<VideoTextProps> {
         if (store.selected === true) {
             //if this collection node is selected, return node with a purple border around it
             return (
-                <div className="scroll-box">
-                    <div
-                        className="node videoText selected" onClick={changeSelect}
-                        ref={this.nodeRef} 
-                        onWheel={(e) => {
-                            e.stopPropagation();
-                            e.preventDefault();
-                        }}>
-                        <div className="content">
-                            <h3 className="titleText">{this.props.store.title} [Links: {getLinks()}]</h3>
-                        </div>
-                        
+                <div
+                    className="node videoText selected" onClick={changeSelect}
+                    ref={this.nodeRef} 
+                    onWheel={(e) => {
+                        e.stopPropagation();
+                        e.preventDefault();
+                    }}>
+                    <div className="content">
+                        <h3 className="titleText">{this.props.store.title} [Links: {getLinks()}]</h3>
                     </div>
+                    
                 </div>
             );
         }
         else {
             //if not, remove purple border
             return(
-                 <div className="scroll-box">
-                    <div
-                        className="node videoText" onClick={changeSelect}
-                        ref={this.nodeRef} 
-                        onWheel={(e) => {
-                            e.stopPropagation();
-                            e.preventDefault();
-                        }}>
-                        <div className="content">
-                            <h3 className="titleText">{this.props.store.title} [Links: {getLinks()}]</h3>
-                        </div>
+                <div
+                    className="node videoText" onClick={changeSelect}
+                    ref={this.nodeRef} 
+                    onWheel={(e) => {
+                        e.stopPropagation();
+                        e.preventDefault();
+                    }}>
+                    <div className="content">
+                        <h3 className="titleText">{this.props.store.title} [Links: {getLinks()}]</h3>
                     </div>
                 </div>
                      

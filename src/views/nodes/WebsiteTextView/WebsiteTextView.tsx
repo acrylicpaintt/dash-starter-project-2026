@@ -49,8 +49,8 @@ export class WebsiteTextView extends React.Component<WebsiteTextProps> {
             //if this collection node is selected, return node with a purple border around it
             return (
                 <div
-                    className="node textText selected" onClick={changeSelect}
-                    ref={this.nodeRef} style={{ height: 50, width: this.props.store.width, transform: store.transform }}
+                    className="node websiteText selected" onClick={changeSelect}
+                    ref={this.nodeRef} 
                     onWheel={(e) => {
                         e.stopPropagation();
                         e.preventDefault();
@@ -66,8 +66,8 @@ export class WebsiteTextView extends React.Component<WebsiteTextProps> {
             //if not, remove purple border
             return(
                 <div
-                    className="node textText" onClick={changeSelect}
-                    ref={this.nodeRef} style={{ height: 50, width: this.props.store.width, transform: store.transform }}
+                    className="node websiteText" onClick={changeSelect}
+                    ref={this.nodeRef} 
                     onWheel={(e) => {
                         e.stopPropagation();
                         e.preventDefault();
