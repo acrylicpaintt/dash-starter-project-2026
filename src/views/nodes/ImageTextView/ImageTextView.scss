@@ -2,10 +2,12 @@
     &.imageText {
       background-color: transparent;
       position:relative;
+      height: auto;
       
-        color: rgb(87, 17, 145); // make text purple but visible
-        box-shadow: 0 0 5px rgb(160, 102, 210); //to match collection nodes, adds purple glow/shadow around node
+      color: rgb(87, 17, 145); // make text purple but visible
+      box-shadow: 0 0 5px rgb(160, 102, 210); //to match collection nodes, adds purple glow/shadow around node
     }
+
 
     &.selected {
         //purple border to indicate node is selected
