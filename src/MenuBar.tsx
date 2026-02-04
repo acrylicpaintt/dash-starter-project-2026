@@ -94,6 +94,11 @@ export class MenuBar extends React.Component<MenuBarProps> {
                 node.parent.removeNode(node);
                 //ensures ALL selected nodes are deleted
             }
+
+            for (let ind = 0; ind < node.linkedNodes.length; ind ++ ) {
+                //removes its linked nodes
+                node.linkedNodes[ind].removeLink(node);
+            }
         });
         
         // Clear selection after deleting

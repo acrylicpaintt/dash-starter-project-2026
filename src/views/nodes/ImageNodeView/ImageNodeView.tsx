@@ -25,25 +25,9 @@ export class ImageNodeView extends React.Component<ImageNodeProps> {
         if (store.selected === true) {
             //if this collection node is selected, return node with a purple border around it
             return (
-                <div className="node imageNode selected" 
-                ref={this.nodeRef} style={{ transform: store.transform }}>
-                    <TopBar store={store} selected={selected}/>
-                    <div className="scroll-box">
-                        <div className="content">
-                            <h3 className="title">{store.title}</h3>
-                            <img src={store.url} alt=""/>
-                        </div>
-                    </div>
-                    <div><ResizeHandle store={store} nodeRef={this.nodeRef}/></div>
-                    <LinkedNodesBar store={store}/>
-                </div>
-            );
-        }
-        else {
-            //if not, remove purple border
-            return (
-            <div className="node imageNode" 
-            ref={this.nodeRef} style={{ transform: store.transform }}>
+                <div style={{ transform: store.transform }}>
+            <div className="node imageNode selected" 
+            ref={this.nodeRef} >
                 <TopBar store={store} selected={selected}/>
                 <div className="scroll-box">
                     <div className="content">
@@ -53,7 +37,29 @@ export class ImageNodeView extends React.Component<ImageNodeProps> {
                 </div>
                 <div><ResizeHandle store={store} nodeRef={this.nodeRef}/></div>
                 <LinkedNodesBar store={store}/>
+            </div>
+            
+            </div>
                 
+            );
+        }
+        else {
+            //if not, remove purple border
+            return (
+                <div style={{ transform: store.transform }}>
+            <div className="node imageNode" 
+            ref={this.nodeRef} >
+                <TopBar store={store} selected={selected}/>
+                <div className="scroll-box">
+                    <div className="content">
+                        <h3 className="title">{store.title}</h3>
+                        <img src={store.url} alt=""/>
+                    </div>
+                </div>
+                <div><ResizeHandle store={store} nodeRef={this.nodeRef}/></div>
+                <LinkedNodesBar store={store}/>
+            </div>
+            
             </div>
         );
         }

@@ -64,6 +64,14 @@ export class NodeStore {
         this.linkedNodes.push(node);
     }
 
+    @action
+    public removeLink(node: NodeStore) {
+        //remove
+        if (!this.linkedNodes.includes(node)) return; //don't remove if it isn't in there - BASE CASE
+
+        this.linkedNodes = this.linkedNodes.filter(n => n !== node);
+    }
+
     //reminder make it so when nodes are deleted the links get deleted too....
 
     constructor() {

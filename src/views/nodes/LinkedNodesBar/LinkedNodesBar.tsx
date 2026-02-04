@@ -12,20 +12,18 @@ export class LinkedNodesBar extends React.Component<LinkedNodesBarProps> {
   
   render() {
     const { store } = this.props;
-
-    console.log("linkedNodes:", store.linkedNodes.length);
-
     if (store.linkedNodes.length === 0) return null;
 
     return (
-      <div className="linked-nodes-bar right">
-        {store.linkedNodes.map((node) => (
-          <button className="linked-node-button"
-          >
-            TEST
-          </button>
-        ))}
-      </div>
+        <div className="linkednodesbar" style={{width: store.width}}>{store.linkedNodes.map(node=> (
+            <button >
+            {node.title}
+            </button>
+        )
+        )} 
+        </div>
     );
+    
+    
   }
 }

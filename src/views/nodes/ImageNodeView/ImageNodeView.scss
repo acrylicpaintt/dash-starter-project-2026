@@ -1,5 +1,7 @@
 .node {
+    
     &.imageNode {
+        //display: flex;
         background: rgb(180, 133, 202);
         box-shadow: 0 0 5px rgb(160, 102, 210); //to match collection nodes, adds purple glow/shadow around node
     }
@@ -12,6 +14,13 @@
     img {
         width: 100%;
     }
+
+}
+
+.node-wrapper {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: stretch;
 }
 
 

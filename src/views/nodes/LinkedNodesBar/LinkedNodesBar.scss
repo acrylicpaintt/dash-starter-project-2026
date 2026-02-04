@@ -1,61 +1,7 @@
-.linked-nodes-bar {
-  position: absolute;
-  background: #1e1e2f;
-  color: #fff;
-  border-radius: 6px;
-  font-size: 12px;
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-
-  .linked-nodes-bar {
-  background: red;
-  width: 200px;
-  height: 200px;
-}
-
-  .linked-nodes-list {
-    max-height: 150px;
-    overflow-y: auto;
-  }
-
-  .linked-node-item {
-    padding: 6px 8px;
-    cursor: pointer;
-    white-space: nowrap;
-
-    &:hover {
-      background: rgba(255, 255, 255, 0.1);
-    }
-  }
-
-  &.right {
-    top: 50%;
-    right: -140px;
-    width: 130px;
-    transform: translateY(-50%);
-  }
-
-  &.bottom {
-    left: 50%;
-    bottom: -90px;
-    width: 90%;
-    transform: translateX(-50%);
-    flex-direction: row;
-
-    .linked-nodes-header {
-      border-bottom: none;
-      border-right: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .linked-nodes-list {
-      display: flex;
-      overflow-x: auto;
-    }
-
-    .linked-node-item {
-      padding: 6px 10px;
-    }
-  }
+.linkednodesbar {
+    background: green;
+    height: 40px;
+    color: white;
+    background-color : green;
+    top: 100%; 
 }
