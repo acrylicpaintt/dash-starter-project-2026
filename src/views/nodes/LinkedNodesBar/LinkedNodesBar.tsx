@@ -66,7 +66,8 @@ export class LinkedNodesBar extends React.Component<LinkedNodesBarProps> {
         return (
             <div className="linkednodesbar">
                 {store.linkedNodes.map((node, index) => (
-                    <button className="linkednodes" style={{ marginLeft: store.width }} key={index} onClick={() => this.moveToLink(node)}>
+                    <button className="linkednodes" style={{ marginLeft: store.width}} 
+                    key={index} onClick={() => this.moveToLink(node)}>
                         {node.title}
                     </button>
                 ))}
