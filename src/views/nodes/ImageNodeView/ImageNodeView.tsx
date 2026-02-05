@@ -36,9 +36,15 @@ export class ImageNodeView extends React.Component<ImageNodeProps> {
                     </div>
                 </div>
                 <div><ResizeHandle store={store} nodeRef={this.nodeRef}/></div>
-                <LinkedNodesBar store={store}/>
+                
+                
             </div>
-            
+            <div style={{
+                position: 'absolute',
+                top: '100%', 
+                left: 0,
+                width: '100%',
+            }}> <LinkedNodesBar store={store}/></div>
             </div>
                 
             );
@@ -46,19 +52,25 @@ export class ImageNodeView extends React.Component<ImageNodeProps> {
         else {
             //if not, remove purple border
             return (
-                <div style={{ transform: store.transform }}>
-            <div className="node imageNode" 
-            ref={this.nodeRef} >
-                <TopBar store={store} selected={selected}/>
-                <div className="scroll-box">
-                    <div className="content">
-                        <h3 className="title">{store.title}</h3>
-                        <img src={store.url} alt=""/>
+            <div style={{ transform: store.transform}}>
+                <div className="node imageNode" 
+                ref={this.nodeRef} >
+                    <TopBar store={store} selected={selected}/>
+                    <div className="scroll-box">
+                        <div className="content">
+                            <h3 className="title">{store.title}</h3>
+                            <img src={store.url} alt=""/>
+                        </div>
                     </div>
+                    <div><ResizeHandle store={store} nodeRef={this.nodeRef}/></div>
+                    
                 </div>
-                <div><ResizeHandle store={store} nodeRef={this.nodeRef}/></div>
-                <LinkedNodesBar store={store}/>
-            </div>
+                <div style={{
+                            position: 'absolute',
+                            top: '100%', 
+                            left: 0,
+                            width: '100%',
+                        }}> <LinkedNodesBar store={store}/></div>
             
             </div>
         );

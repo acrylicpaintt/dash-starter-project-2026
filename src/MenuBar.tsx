@@ -50,6 +50,30 @@ export class MenuBar extends React.Component<MenuBarProps> {
 
     }
 
+    unlinkTwo = () => {
+        //unlinks two nodes , removes them from each others list of linked nodes
+        
+        if (this.props.selectionStore.selectedNodes.length !== 2 ) {
+            console.log('not 2 nodes');
+            //check that you only selected two
+            return;
+        }
+
+        const nodeOne = this.props.selectionStore.selectedNodes[0];
+        const nodeTwo = this.props.selectionStore.selectedNodes[1];
+
+        if (nodeOne.parent !== nodeTwo.parent) {
+            //not in the same canvas
+            console.log('not in same canvas/collection');
+            return;
+        }
+
+        nodeOne.removeLink(nodeTwo);
+        nodeTwo.removeLink(nodeOne);
+        return;
+
+    }
+
     setCurrentCollection = () => {
         //update the collection to know where to add to
         //ex. set to collection node instead of the main collection canvas
@@ -224,9 +248,10 @@ export class MenuBar extends React.Component<MenuBarProps> {
                 <button className="menuButton" onClick={this.createNewTreeCollectionNode}>+ Tree Collection</button>
                 <button className="menuButton" onClick={this.setCurrentCollection}>Set Collection</button>
                 <button className="menuButton" onClick={this.linkTwo}>Link Two</button>
+                <button className="menuButton" onClick={this.unlinkTwo}>Unlink Two</button>
                 <button className="menuButton" onClick={this.deleteNode}>Delete Selected</button>
                 <button className="menuButton" onClick={this.setCollectionMain}>Collection: Main</button>
-                <button className="menuButton" onClick={this.switchView}>Switch Main View</button>
+                <button className="menuButton" onClick={this.switchView}>Switch View</button>
                 <button className="menuButton" onClick={this.deselectAll}>Deselect All</button>
             </div>
             

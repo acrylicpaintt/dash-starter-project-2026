@@ -4,15 +4,17 @@
     top: 0 !important;
     left: 0;
     width: 100%;
-    height: 80px;
+    padding-bottom: 10px;
+    height: auto;
     z-index: 1000;
+    box-shadow: 0 0 9px rgb(95, 45, 117);
 }
 
 .menuButton {
-        padding: 8x;
+        padding-left: 10px;
         position: relative;
         background-color: rgb(155, 125, 183);
-        width: 117px;
+        width: 109px;
         height: 60px; 
         z-index: 1000; //otherwise shows up behind the nodes and is unable to be interacted with - FIND ANOTHER OWRK AROUND 
         border-radius: 30px; //rounded button
@@ -20,8 +22,9 @@
         
         color: white;
         font-family: 'Hind Siliguri', sans-serif;
+        font-size: 12px;
         box-shadow: 0 0 9px grey;
-        margin-left: 8px;
+        margin-left: 6px;
         margin-top: 10px;
         cursor: pointer;
 
