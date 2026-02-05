@@ -6,6 +6,7 @@ import { ResizeHandle } from "../ResizeHandle";
 import { FreeFormCanvas } from "../../freeformcanvas/FreeFormCanvas";
 import { LinkedNodesBar } from "../LinkedNodesBar";
 import "./FreeformCollectionNodeView.scss";
+import "./../NodeView.scss";
 
 interface FreeformCollectionNodeProps {
     store: FreeformCollectionNodeStore;
@@ -58,10 +59,10 @@ export class FreeformCollectionNodeView extends React.Component<FreeformCollecti
                         
                     }}>
                     <TopBar store={store} selected={selected}/>
-                    <div className="content" //onClick={changeSelect}
+                    <div className="content" onClick={changeSelect}
                     >
                         <h3 className="title">{this.props.store.title}</h3>
-                        <div className="freeformcanvas-container nested">
+                        <div className="freeformcanvasnode-container nested">
                             <FreeFormCanvas store={store} selectionStore={this.props.selected}/>
                             </div>
                     </div>
@@ -74,30 +75,30 @@ export class FreeformCollectionNodeView extends React.Component<FreeformCollecti
             } else {
                 //if not, remove purple border
                 return (
-                 <div style={{transform: store.transform}}>
-                <div
-                    className="node collectionNode"
-                    ref={this.nodeRef}
-                    style={{
-                        width: store.width,
-                        height: store.height,
-                        
-                    }}>
-                    <TopBar store={store} selected={selected}/>
-                    <div className="content"//onClick={changeSelect} 
-                    >
-                        
-                        <h3 className="title">{this.props.store.title}</h3>
-                        <div className="freeformcanvas-container nested">
-                            <FreeFormCanvas store={store} selectionStore={this.props.selected}/>
+                <div style={{ transform: store.transform}}>
+                    <div className="node collectionNode" style={{width: store.width, height: store.height}}
+                    ref={this.nodeRef} >
+                        <TopBar store={store} selected={selected}/>
+                        <div className="scroll-box">
+                            <div className="content" onClick={changeSelect}>
+                                <h3 className="title">{store.title}</h3>
+                                <FreeFormCanvas store={store} selectionStore={this.props.selected}/>
                             </div>
+                        </div>
+                        <div><ResizeHandle store={store} nodeRef={this.nodeRef}/></div>
+                        
                     </div>
-                    <ResizeHandle store={store} nodeRef={this.nodeRef} />
+                    <div style={{
+                                position: 'absolute',
+                                top: '100%', 
+                                left: '100%',
+                                width: '100%',
+                            }}> <LinkedNodesBar store={store}/></div>
+                
                 </div>
-                <div style={{ position: 'absolute', top: '100%',  left: 0, width: '100%' }}> 
-                <LinkedNodesBar store={store}/></div>
-                </div>
-                );
+                            );
+                
+               
             }
             
     }

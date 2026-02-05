@@ -6,6 +6,7 @@ import { ResizeHandle } from "../ResizeHandle";
 import { TreeCanvas } from "../../treecanvas/TreeCanvas";
 import "./TreeCollectionNodeView.scss";
 import { LinkedNodesBar } from "../LinkedNodesBar";
+import "./../NodeView.scss";
 
 interface TreeCollectionNodeProps {
     store: TreeCollectionNodeStore;

@@ -19,6 +19,7 @@ export class FreeFormCanvas extends React.Component<FreeFormProps> {
         e.stopPropagation();
         e.preventDefault();
         this.isPointerDown = true;
+
         document.removeEventListener("pointermove", this.onPointerMove);
         document.addEventListener("pointermove", this.onPointerMove);
         document.removeEventListener("pointerup", this.onPointerUp);

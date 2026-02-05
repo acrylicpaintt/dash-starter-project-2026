@@ -22,7 +22,7 @@ export class FreeformCollectionNodeStore extends NodeStore {
     public nodes: NodeStore[] = [];
 
     @observable
-    public canvas: FreeFormCanvas | undefined; //the canvas should be unchanged so yeah
+    public canvas: FreeFormCanvas | undefined; //the canvas it is should be unchanged so yeah
 
     @action
     public addNodes(stores: NodeStore[]): void {

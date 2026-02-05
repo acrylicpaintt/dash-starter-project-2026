@@ -64,7 +64,7 @@ export class FreeformCollectionTextView extends React.Component<FreeformCollecti
                     ref={this.nodeRef}>
                     <div className="scroll-box">
                         <div className="content">
-                            <h3 className="title">{this.props.store.title} [Links: {getLinks()}]</h3>
+                            <h3 className="title">{store.title} [Links: {getLinks()}]</h3>
                             <TreeCanvas store={store} selectionStore={this.props.selected}/>
                         </div>
                     </div>
@@ -79,7 +79,7 @@ export class FreeformCollectionTextView extends React.Component<FreeformCollecti
                     ref={this.nodeRef}>
                     <div className="scroll-box">
                         <div  className="content">
-                            <h3 className="title">{this.props.store.title} [Links: {getLinks()}]</h3>
+                            <h3 className="title">{store.title} [Links: {getLinks()}]</h3>
                             <TreeCanvas store={store} selectionStore={this.props.selected}/>
                         </div>
                     </div>

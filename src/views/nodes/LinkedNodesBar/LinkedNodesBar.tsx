@@ -1,7 +1,8 @@
 import { observer } from "mobx-react";
 import * as React from "react";
-import { NodeCollectionStore, NodeStore } from "../../../stores";
+import { NodeStore } from "../../../stores";
 import "./LinkedNodesBar.scss";
+import { Constants } from "../../../Constants";
 
 interface LinkedNodesBarProps {
   store: NodeStore;
@@ -12,7 +13,7 @@ interface LinkedNodesBarProps {
 @observer
 export class LinkedNodesBar extends React.Component<LinkedNodesBarProps> {
     private animationId: number | null = null;
-
+    //fyi structure helped from claude, i asked the dash slack about this :))
     moveToLink = (node: NodeStore) => {
         if (this.animationId) {
             cancelAnimationFrame(this.animationId);
@@ -21,8 +22,8 @@ export class LinkedNodesBar extends React.Component<LinkedNodesBarProps> {
         let canvas = this.props.store.parent;
         
         if (canvas) {
-            const targetX = -node.x + window.innerWidth / 2 - 600;
-            const targetY = -node.y + window.innerHeight / 2 - 200;
+            const targetX = -node.x + window.innerWidth / 2 - Constants.X_DISPLACEMENT;
+            const targetY = -node.y + window.innerHeight / 2 - Constants.Y_DISPLACEMENT;
             const initX = canvas.x;
             const initY = canvas.y;
             const time = 700; 
