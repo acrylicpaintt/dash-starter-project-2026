@@ -18,37 +18,37 @@ export class TreeCanvas extends React.Component<TreeCanvasProps> {
 
         if (store.freeformView !== true) {
             return (
-                <div className="treecanvas-container" >
-                    <div className="treecanvas">
-                        {   
-                            // maps each item in the store to be rendered in the tree canvas as text based on the node type
-                            store.nodes.map(nodeStore => {
-                                switch (nodeStore.type) {
-                                    case StoreType.Text:
-                                        return (<TextTextView key={nodeStore.Id}  selected={this.props.selectionStore} store={nodeStore as TextNodeStore}/>)
+                <div className="treecanvas-container">                   
+                        <div className="treecanvas">
+                            {   
+                                // maps each item in the store to be rendered in the tree canvas as text based on the node type
+                                store.nodes.map(nodeStore => {
+                                    switch (nodeStore.type) {
+                                        case StoreType.Text:
+                                            return (<TextTextView key={nodeStore.Id}  selected={this.props.selectionStore} store={nodeStore as TextNodeStore}/>)
 
-                                    case StoreType.Video:
-                                        return (<VideoTextView key={nodeStore.Id}  selected={this.props.selectionStore} store={nodeStore as VideoNodeStore}/>)
+                                        case StoreType.Video:
+                                            return (<VideoTextView key={nodeStore.Id}  selected={this.props.selectionStore} store={nodeStore as VideoNodeStore}/>)
 
-                                    case StoreType.Image:
-                                        return (<ImageTextView key={nodeStore.Id}  selected={this.props.selectionStore} store={nodeStore as ImageNodeStore}/>)
+                                        case StoreType.Image:
+                                            return (<ImageTextView key={nodeStore.Id}  selected={this.props.selectionStore} store={nodeStore as ImageNodeStore}/>)
 
-                                    case StoreType.Website:
-                                        return (<WebsiteTextView key={nodeStore.Id}  selected={this.props.selectionStore} store={nodeStore as WebsiteNodeStore}/>)
+                                        case StoreType.Website:
+                                            return (<WebsiteTextView key={nodeStore.Id}  selected={this.props.selectionStore} store={nodeStore as WebsiteNodeStore}/>)
 
-                                    case StoreType.CollectionFreeform:
-                                        return (<FreeformCollectionTextView key={nodeStore.Id} selected={this.props.selectionStore} store={nodeStore as FreeformCollectionNodeStore}/>)
+                                        case StoreType.CollectionFreeform:
+                                            return (<FreeformCollectionTextView key={nodeStore.Id} selected={this.props.selectionStore} store={nodeStore as FreeformCollectionNodeStore}/>)
 
-                                    case StoreType.CollectionTree:
-                                        return (<TreeCollectionTextView  key={nodeStore.Id} selected={this.props.selectionStore} store={nodeStore as TreeCollectionNodeStore}/>)
-                                    
-                                    default:
-                                        return (null);
-                                }
-                            })
-                        }
+                                        case StoreType.CollectionTree:
+                                            return (<TreeCollectionTextView  key={nodeStore.Id} selected={this.props.selectionStore} store={nodeStore as TreeCollectionNodeStore}/>)
+                                        
+                                        default:
+                                            return (null);
+                                    }
+                                })
+                            }
+                        </div>
                     </div>
-                </div>
             );
         }
         else {

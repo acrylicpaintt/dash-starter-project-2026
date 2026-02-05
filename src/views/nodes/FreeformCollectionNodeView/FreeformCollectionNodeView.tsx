@@ -4,6 +4,7 @@ import { FreeformCollectionNodeStore, SelectionStore } from "../../../stores";
 import { TopBar } from "../TopBar";
 import { ResizeHandle } from "../ResizeHandle";
 import { FreeFormCanvas } from "../../freeformcanvas/FreeFormCanvas";
+import { LinkedNodesBar } from "../LinkedNodesBar";
 import "./FreeformCollectionNodeView.scss";
 
 interface FreeformCollectionNodeProps {
@@ -47,42 +48,54 @@ export class FreeformCollectionNodeView extends React.Component<FreeformCollecti
         if (store.selected === true) {
                 //if this collection node is selected, return node with a purple border around it
                 return (
+                    <div style={{transform: store.transform}}>
                 <div
                     className="node collectionNode selected"
                     ref={this.nodeRef}
                     style={{
-                        transform: store.transform,
                         width: store.width,
                         height: store.height,
                         
                     }}>
                     <TopBar store={store} selected={selected}/>
-                    <div className="content" onClick={changeSelect} onPointerDown={(e) => e.stopPropagation()}>
-                        
+                    <div className="content" //onClick={changeSelect}
+                    >
                         <h3 className="title">{this.props.store.title}</h3>
-                        <FreeFormCanvas store={store} selectionStore={this.props.selected}/>
+                        <div className="freeformcanvas-container nested">
+                            <FreeFormCanvas store={store} selectionStore={this.props.selected}/>
+                            </div>
                     </div>
                     <ResizeHandle store={store} nodeRef={this.nodeRef} />
+                </div>
+                <div style={{ position: 'absolute', top: '100%',  left: 0, width: '100%' }}> 
+                <LinkedNodesBar store={store}/></div>
                 </div>
                 );
             } else {
                 //if not, remove purple border
                 return (
+                 <div style={{transform: store.transform}}>
                 <div
-                    className="node collectionNode" 
+                    className="node collectionNode"
                     ref={this.nodeRef}
                     style={{
-                        transform: store.transform,
                         width: store.width,
                         height: store.height,
                         
                     }}>
                     <TopBar store={store} selected={selected}/>
-                    <div className="content" onClick={changeSelect} onPointerDown={(e) => e.stopPropagation()}>
+                    <div className="content"//onClick={changeSelect} 
+                    >
+                        
                         <h3 className="title">{this.props.store.title}</h3>
-                        <FreeFormCanvas store={store} selectionStore={this.props.selected}/>
+                        <div className="freeformcanvas-container nested">
+                            <FreeFormCanvas store={store} selectionStore={this.props.selected}/>
+                            </div>
                     </div>
                     <ResizeHandle store={store} nodeRef={this.nodeRef} />
+                </div>
+                <div style={{ position: 'absolute', top: '100%',  left: 0, width: '100%' }}> 
+                <LinkedNodesBar store={store}/></div>
                 </div>
                 );
             }

@@ -5,6 +5,7 @@ import "./../NodeView.scss";
 import { TopBar } from "./../TopBar";
 import { ResizeHandle } from "./../ResizeHandle";
 import "./WebsiteNodeView.scss";
+import { LinkedNodesBar } from "../LinkedNodesBar";
 
 interface WebsiteNodeProps {
     store: WebsiteNodeStore;
@@ -19,11 +20,12 @@ export class WebsiteNodeView extends React.Component<WebsiteNodeProps> {
         let store = this.props.store;
         let selected = this.props.selected
       
-        if (store.selected == true) {
+        if (store.selected === true) {
             //alters the selection state of the node
             return (
-                <div className="node websiteNode selected"  ref={this.nodeRef} 
-                 style={{ transform: store.transform }}>
+                <div style={{ transform: store.transform }}>
+                <div className="node websiteNode selected"  
+                ref={this.nodeRef} >
                     <TopBar store={store} selected={selected}/>
                     <div className="scroll-box">
                         <div className="content">
@@ -33,12 +35,16 @@ export class WebsiteNodeView extends React.Component<WebsiteNodeProps> {
                     </div>
                     <div><ResizeHandle store={store} nodeRef={this.nodeRef}/></div>
                 </div>
+                <div style={{ position: 'absolute', top: '100%',  left: 0, width: '100%' }}>
+                    <LinkedNodesBar store={store} /></div>
+                </div>
             );
         }
         else {
             return (
+                <div style={{ transform: store.transform }}>
                 <div className="node websiteNode"  
-                ref={this.nodeRef} style={{ transform: store.transform }}>
+                ref={this.nodeRef} >
                     <TopBar store={store} selected={selected}/>
                     <div className="scroll-box">
                         <div className="content">
@@ -47,6 +53,9 @@ export class WebsiteNodeView extends React.Component<WebsiteNodeProps> {
                         </div>
                     </div>
                     <div><ResizeHandle store={store} nodeRef={this.nodeRef}/></div>
+                </div>
+                <div style={{ position: 'absolute', top: '100%',  left: 0, width: '100%' }}>
+                    <LinkedNodesBar store={store} /></div>
                 </div>
             );
         }

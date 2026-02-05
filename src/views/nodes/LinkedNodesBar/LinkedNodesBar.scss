@@ -1,7 +1,39 @@
 .linkednodesbar {
-    background: green;
     height: 40px;
     color: white;
-    background-color : green;
     top: 100%; 
+
+    
+}
+ .linkednodes{
+    
+    padding-left: 10px;
+    position: relative;
+    background-color:  rgb(179, 86, 193);
+    width: 109px;
+    height: 60px; 
+    z-index: 1000; //otherwise shows up behind the nodes and is unable to be interacted with - FIND ANOTHER OWRK AROUND 
+    border: none;
+    
+    color: white;
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: 12px;
+    box-shadow: 0 0 5px rgb(160, 102, 210); 
+    border: solid 1px white;
+    margin-left: 300px;
+    margin-top: 0px;
+    
+    cursor: pointer;
+
+    white-space: nowrap;
+
+
+    &:hover {
+        background-color: rgb(146, 67, 164);
+    }
+
+    &:active {
+        background-color: rgb(91, 41, 107);
+        transform: scale(0.98); 
+    }
 }

@@ -7,6 +7,7 @@ import { TopBar } from "../TopBar";
 import { ResizeHandle } from "../ResizeHandle";
 import "./../NodeView.scss";
 import "./TextNodeView.scss";
+import { LinkedNodesBar } from "../LinkedNodesBar";
 
 interface TextNodeProps {
     store: TextNodeStore;
@@ -28,9 +29,10 @@ export class TextNodeView extends React.Component<TextNodeProps> {
         if (store.selected === true) {
             //if this collection node is selected, return node with a purple border around it
             return (
+                <div style={{transform: store.transform}}>
                 <div
                     className="node textNode selected" 
-                    ref={this.nodeRef} style={{ transform: store.transform }}
+                    ref={this.nodeRef} 
                     onWheel={(e) => {
                         e.stopPropagation();
                         e.preventDefault();
@@ -57,15 +59,19 @@ export class TextNodeView extends React.Component<TextNodeProps> {
                         </div>
                     </div>
                     <ResizeHandle store={store} nodeRef={this.nodeRef}/>
+                </div>
+                <div style={{ position: 'absolute', top: '100%',  left: 0, width: '100%' }}> 
+                <LinkedNodesBar store={store}/></div>
                 </div>
             );
         }
         else {
             //if not, remove purple border
             return(
+                 <div style={{transform: store.transform}}>
                 <div
                     className="node textNode" 
-                    ref={this.nodeRef} style={{ transform: store.transform }}
+                    ref={this.nodeRef}
                     onWheel={(e) => {
                         e.stopPropagation();
                         e.preventDefault();
@@ -93,6 +99,11 @@ export class TextNodeView extends React.Component<TextNodeProps> {
                     </div>
                     <ResizeHandle store={store} nodeRef={this.nodeRef}/>
                 </div>
+                <div style={{ position: 'absolute', top: '100%',  left: 0, width: '100%' }}> 
+                                <LinkedNodesBar store={store}/></div>
+                </div>
+                
+                                
             );
         }
     }

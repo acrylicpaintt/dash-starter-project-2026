@@ -42,7 +42,7 @@ export class ImageNodeView extends React.Component<ImageNodeProps> {
             <div style={{
                 position: 'absolute',
                 top: '100%', 
-                left: 0,
+                left: '100%',
                 width: '100%',
             }}> <LinkedNodesBar store={store}/></div>
             </div>
@@ -68,7 +68,7 @@ export class ImageNodeView extends React.Component<ImageNodeProps> {
                 <div style={{
                             position: 'absolute',
                             top: '100%', 
-                            left: 0,
+                            left: '100%',
                             width: '100%',
                         }}> <LinkedNodesBar store={store}/></div>
             

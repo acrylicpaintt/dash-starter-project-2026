@@ -5,6 +5,7 @@ import { TopBar } from "../TopBar";
 import { ResizeHandle } from "../ResizeHandle";
 import { TreeCanvas } from "../../treecanvas/TreeCanvas";
 import "./TreeCollectionNodeView.scss";
+import { LinkedNodesBar } from "../LinkedNodesBar";
 
 interface TreeCollectionNodeProps {
     store: TreeCollectionNodeStore;
@@ -36,37 +37,12 @@ export class TreeCollectionNodeView extends React.Component<TreeCollectionNodePr
             if (store.selected === true) {
                 //if this collection node is selected, return node with a purple border around it
                 return (
+                <div style={{
+                        transform: store.transform}} >
                 <div
                     className="node collectionTreeNode selected"
                     ref={this.nodeRef}
-                    style={{
-                        transform: store.transform,
-                        width: store.width,
-                        height: store.height,
-                        
-                    }}>
-                    <TopBar store={store} selected={selected}/>
-                    <div className="scroll-box">
-                        <div className="content">
-                            <h3 className="title">{this.props.store.title} [Links: {getLinks()}]</h3>
-                            <TreeCanvas store={store} selectionStore={this.props.selected}/>
-                        </div>
-                        <ResizeHandle store={store} nodeRef={this.nodeRef} />
-                    </div>
-                </div>
-                );
-            } else {
-                //if not, remove purple border
-                return (
-                <div
-                    className="node collectionTreeNode"
-                    ref={this.nodeRef}
-                    style={{
-                        transform: store.transform,
-                        width: store.width,
-                        height: store.height,
-                        
-                    }}>
+                    style={{width: store.width, height: store.height}}>
                     <TopBar store={store} selected={selected}/>
                     <div className="scroll-box">
                         <div  className="content">
@@ -75,6 +51,31 @@ export class TreeCollectionNodeView extends React.Component<TreeCollectionNodePr
                         </div>
                         <ResizeHandle store={store} nodeRef={this.nodeRef} />
                     </div>
+                    </div>
+                    <div style={{ position: 'absolute', top: '100%',  left: 0, width: '100%' }}>
+                        <LinkedNodesBar store={store}/></div>
+                    </div>
+                );
+            } else {
+                //if not, remove purple border
+                return (
+                    <div style={{
+                        transform: store.transform}}>
+                <div
+                    className="node collectionTreeNode"
+                    ref={this.nodeRef}
+                    style={{width: store.width, height: store.height}}>
+                    <TopBar store={store} selected={selected}/>
+                    <div className="scroll-box">
+                        <div  className="content">
+                            <h3 className="title">{this.props.store.title} [Links: {getLinks()}]</h3>
+                            <TreeCanvas store={store} selectionStore={this.props.selected}/>
+                        </div>
+                        <ResizeHandle store={store} nodeRef={this.nodeRef} />
+                    </div>
+                    </div>
+                    <div style={{ position: 'absolute', top: '100%',  left: 0, width: '100%' }}>
+                        <LinkedNodesBar store={store}/></div>
                     </div>
 
                 );

@@ -5,17 +5,35 @@
 
         box-shadow: 0 0 5px rgb(160, 102, 210); //to make it visible when theres collection nodes inside collection nodes
     }
-    .freeformcanvas {
-        position: absolute;
-        top: 0;
-        left: 0;
-        
-    }
-    &.selected {
+     &.selected {
         //purple border to indicate node is selected
         border: 5px solid rgba(191, 58, 221);
 
     }
+    
+}
+
+.freeformcanvas-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+    
+    .freeformcanvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    &.nested {
+        z-index: 10;
+        pointer-events: auto;
+    }
+
+   
 }
 
 

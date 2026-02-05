@@ -5,6 +5,7 @@ import "./../NodeView.scss";
 import { TopBar } from "./../TopBar";
 import { ResizeHandle } from "./../ResizeHandle";
 import "./VideoNodeView.scss";
+import { LinkedNodesBar } from "../LinkedNodesBar";
 
 interface VideoNodeProps {
     store: VideoNodeStore;
@@ -19,26 +20,12 @@ export class VideoNodeView extends React.Component<VideoNodeProps> {
         let store = this.props.store;
         let selected = this.props.selected
         
-        function changeSelect(e: React.MouseEvent) {
-            //alters the selection state of the node
-                e.stopPropagation();
-            store.setSelected(!store.selected);
-            //if it is already selected, deselects it
-            //vice versa
-            if (store.selected) {
-                selected.addToSelected(store);
-            }
-            else{
-                selected.removeFromSelected(store);
-            }
-                    
-        }
-        
         if (store.selected === true) {
             //if this collection node is selected, return node with a purple border around it
             return (
+                <div style={{transform: store.transform}}>
                 <div className="node videoNode selected" 
-                ref={this.nodeRef} style={{ transform: store.transform }}>
+                ref={this.nodeRef}>
                     <TopBar store={store} selected={selected}/>
                     <div className="scroll-box">
                         <div className="content">
@@ -48,13 +35,17 @@ export class VideoNodeView extends React.Component<VideoNodeProps> {
                     </div>
                     <div><ResizeHandle store={store} nodeRef={this.nodeRef}/></div>
                 </div>
+                <div style={{ position: 'absolute', top: '100%',  left: 0, width: '100%' }}>
+                    <LinkedNodesBar store={store}/></div>
+                </div>
             );
         }
         else {
             //if not, remove purple border
             return (
-                <div className="node videoNode"
-                ref={this.nodeRef} style={{ transform: store.transform }}>
+                <div style={{transform: store.transform}}>
+                <div className="node videoNode" 
+                ref={this.nodeRef}>
                     <TopBar store={store} selected={selected}/>
                     <div className="scroll-box">
                         <div className="content">
@@ -63,6 +54,9 @@ export class VideoNodeView extends React.Component<VideoNodeProps> {
                         </div>
                     </div>
                     <div><ResizeHandle store={store} nodeRef={this.nodeRef}/></div>
+                </div>
+                <div style={{ position: 'absolute', top: '100%',  left: 0, width: '100%' }}>
+                    <LinkedNodesBar store={store}/></div>
                 </div>
             );
         }
