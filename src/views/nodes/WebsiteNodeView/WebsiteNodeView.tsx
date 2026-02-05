@@ -30,7 +30,7 @@ export class WebsiteNodeView extends React.Component<WebsiteNodeProps> {
                     <div className="scroll-box">
                         <div className="content">
                             <h3 className="title">{store.title}</h3>
-                            <iframe title={store.title} src={store.url} />
+                            <iframe title={store.title} style= {{height: store.height}} src={store.url} />
                         </div>
                     </div>
                     <div><ResizeHandle store={store} nodeRef={this.nodeRef}/></div>
@@ -49,7 +49,7 @@ export class WebsiteNodeView extends React.Component<WebsiteNodeProps> {
                     <div className="scroll-box">
                         <div className="content">
                             <h3 className="title">{store.title}</h3>
-                            <iframe title={store.title} src={store.url} />
+                            <iframe title={store.title} style= {{height: store.height}} src={store.url} />
                         </div>
                     </div>
                     <div><ResizeHandle store={store} nodeRef={this.nodeRef}/></div>
