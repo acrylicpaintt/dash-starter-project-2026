@@ -11,7 +11,8 @@ If you have issues (or if you're running it for the first time), run `npm instal
 
 **Overall**:
 - Resize button is in the bottom right handle of all of the freeform
-Each button and what it does:
+  
+**Each button and what it does:**
 + Text Node => adds a Text Node to the collection you are in --- if you are in freeform view, you can edit the text (although you have to interact with the buttons above the textbox to edit the text)
 + Image Node => adds an Image Node to the collection you are in
 + Video Node => adds a Video Node to the collection you are in
