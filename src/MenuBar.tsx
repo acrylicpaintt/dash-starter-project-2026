@@ -84,7 +84,7 @@ export class MenuBar extends React.Component<MenuBarProps> {
 
         if (selectionStore.selectedNodes.length !== 1 ) {
             //check that you only selected one
-            this.setState({errorMessage: "Error: More than one collection/node selected"});
+            this.setState({errorMessage: "Error: Please select only one thing"});
             return;
         }
 
